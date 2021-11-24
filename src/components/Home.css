@@ -1,0 +1,34 @@
+/*Card gird in home page*/
+
+.H-Card-gird{
+display:grid;
+grid-template-columns: 1fr 1fr 1fr 1fr;
+gap: 5px;
+}
+
+@media screen and (max-width:660px){
+    .H-Card-gird{
+        display:grid;
+        grid-template-columns: 1fr ;
+        place-items: center;
+        gap: 5px;
+}
+}
+
+@media screen and (min-device-width: 661px) and (max-device-width:1000px){
+    .H-Card-gird{
+        display:grid;
+        grid-template-columns: 1fr 1fr ;
+        place-items: center;
+        gap: 5px;
+}
+}
+
+@media screen and (min-device-width: 1001px) and (max-device-width:1024px){
+    .H-Card-gird{
+        display:grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        place-items: center;
+        gap: 5px;
+}
+}

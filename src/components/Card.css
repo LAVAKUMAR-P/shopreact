@@ -1,0 +1,55 @@
+/*css for cards*/
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@600&display=swap');
+.H-container{
+    max-width:300PX;
+    min-height:200px;
+    background-color: #F5FFFA;
+    display: grid;
+    grid-template-columns: 1fr;
+    place-items: center;
+    font-family: 'Outfit', sans-serif;
+    margin: 5px;
+}
+.H-container:hover{
+    border:5px solid #d33a2c;
+    margin: 0px;
+}
+/*css for inside card*/
+
+.C-image{
+    width:280px;
+    height:300px;
+    margin: 5px;
+    border-radius: 10px;
+}
+
+.C-title{
+    margin: 5px;
+}
+
+.Card-content{
+    display:grid;
+    place-items: center;
+    grid-template-columns: 1fr 1fr;
+    margin: 2px;
+    font-size: 1em;
+}
+
+/*css for buttons*/
+.C-buttons{
+    padding: 0.5em 2em 0.5em 2em;
+    margin: 0.5em;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 1em;
+    font-weight: 600;
+    color: #ffff;
+    background-color: rgba(49, 49, 235, 0.774);
+    border-radius: 5px;
+    border: none;
+}
+
+.C-buttons:hover{
+    background-color: rgba(20, 20, 143, 0.774);
+    cursor: pointer; 
+    box-shadow: 0 0 10px rgba(20, 20, 143, 0.774);
+}

@@ -1,0 +1,104 @@
+/*container position*/
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@600&display=swap');
+
+
+.CT-overall{
+    display: grid;
+    place-items: center;
+}
+
+.CT-container-position{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100Vh;
+}
+
+/*css for card container*/
+.CT-container{
+   min-width: 500px;
+   max-height: 200px;
+   background-color: #F5FFFA;
+   padding: 1em;
+   margin: 1em !important;
+   font-family: 'Outfit', sans-serif;
+   margin: 5px;
+   
+}
+
+.CT-container:hover{
+    border:5px solid #d33a2c;
+    margin: 0px;
+}
+
+
+
+.CT-gird-container{
+    display: grid;
+   grid-template-columns: 1fr 1fr;
+}
+
+
+/*css for product image*/
+.CT-image{
+    width:200px;
+    height:200px;
+}
+.CT-image-position{
+    display: grid;
+    place-content: center;
+   
+}
+/*css for content in product*/
+.CT-content{
+    margin: 1em;
+}
+
+/*css for buttons*/
+.CT-buttons{
+    padding: 0.5em 2em 0.5em 2em;
+    margin: 0.5em;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 1em;
+    font-weight: 600;
+    color: #ffff;
+    background-color: rgba(49, 49, 235, 0.774);
+    border-radius: 5px;
+    border: none;
+}
+
+.CT-buttons:hover{
+    background-color: rgba(20, 20, 143, 0.774);
+    cursor: pointer; 
+    box-shadow: 0 0 10px rgba(20, 20, 143, 0.774);
+}
+
+@media screen and (max-device-width:990px) { 
+    .CT-gird-container{
+        display: grid;
+       grid-template-columns: 1fr;
+    }
+    /*css for product image*/
+.CT-image{
+    max-width: 250px;
+    max-height: 250px;
+}
+.CT-container{
+    width: 90%;
+    background-color: #F5FFFA;
+    padding: 0.5em;
+    max-height: none;
+    border:5px solid #d33a2c;
+ }
+ .CT-container-position{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+}
+.CT-overall{
+    display: grid;
+    place-items: center;
+}
+
+  }

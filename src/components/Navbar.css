@@ -1,0 +1,201 @@
+* {
+  padding: 0px;
+  margin: 0px;
+}
+
+.App-name{
+  color:#fff;
+  size: 1em;
+  margin: 3px;
+}
+
+nav {
+  width: 100%;
+  height: 80px;
+  background: #d33a2c;
+  position: sticky;
+  top: 0;
+  margin-top: 0px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+nav img {
+  height: 50px;
+}
+.list {
+  list-style-type: none;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.items {
+  margin-right: 20px;
+  font-size: 20px;
+  text-transform: uppercase;
+  color: #f1f1f1;
+  cursor: pointer;
+}
+
+.items:hover {
+  color: tomato;
+  text-decoration: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+.btn {
+  display: none;
+  position: absolute;
+  right: 10px;
+  top: 5px;
+  padding: 5px;
+  color: #fff;
+  font-size: 3em;
+}
+
+
+
+/*search css*/
+.search {
+  display: grid;
+  grid-template-columns:600px;
+  
+}
+form.search input[type="text"] {
+  padding: 10px;
+  font-size: 17px;
+  border: 1px solid #502cd3;
+  border-right: none;
+  float: left;
+  background: #f1f1f1;
+  outline:none;
+  width: 77%;
+}
+
+form.search button {
+  float: left;
+  min-width: 18%;
+  padding: 9px;
+  background:#502cd3;
+  color: white;
+  font-size: 17px;
+  border: 1px solid #662cd3;
+  border-left: none; /* Prevent double borders */
+  cursor: pointer;
+}
+
+nav div{
+  min-width: 20%;
+}
+
+@media screen and (max-width:1024px) {
+  nav {
+    width: 100%;
+    height: 50px;
+    padding-bottom: 50px;
+  }
+
+  nav div{
+    min-width: 80%;
+  }
+
+  .list {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background-color: #d33a2c;
+    flex-direction: column;
+    height: auto;
+    top: 100px;
+  }
+  .items:nth-child(1) {
+    border-top: 1px solid rgba(255, 255, 255, 0.555);
+  }
+  .items {
+    width: 100%;
+    border-top: 1px solid rgba(255, 255, 255, 0.555);
+    text-align: center;
+    margin-right: 0px;
+    padding: 10px 0;
+  }
+  .btn {
+    display: block;
+    position: absolute;
+    right: 10px;
+    top: 3px;
+    padding: 5px;
+    color: #fff;
+    font-size: 3em;
+  }
+  a {
+    text-decoration: none !important;
+  }
+ 
+  input {
+    position: absolute;
+    top: 50px;
+    left: 5px;
+    margin-top: 5px;
+    width: 72%;
+  }
+  /*search css*/
+  .search {
+    display: grid;
+    grid-template-columns:300px;
+    
+  }
+  form.search button {
+    float: left;
+    width: 20%;
+    background: #502cd3;
+    color: white;
+    cursor: pointer;
+    position: absolute;
+    top: 50px;
+    right: 5px;
+    margin-top: 5px;
+  }
+  
+}
+
+@media screen and (min-device-width: 540px) and (max-device-width:630px) { 
+  
+  input {
+    position: absolute;
+    top: 50px;
+    left: 5px;
+    margin-top: 5px;
+    width: 74%;
+    display: inline-block;
+  } 
+}
+
+@media screen and (min-device-width: 630px) and (max-device-width:660px) { 
+  
+  input {
+    position: absolute;
+    top: 50px;
+    left: 5px;
+    margin-top: 5px;
+    width: 75%;
+    display: inline-block;
+  } 
+}
+
+@media screen and (min-device-width: 661px) and (max-device-width:1024px) { 
+  
+  input {
+    position: absolute;
+    top: 50px;
+    left: 5px;
+    margin-top: 5px;
+    width: 77%;
+    display: inline-block;
+  } 
+}
+

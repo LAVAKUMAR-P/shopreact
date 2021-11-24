@@ -1,0 +1,85 @@
+/*container position*/
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@600&display=swap');
+
+.PT-container-position{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100Vh;
+}
+
+/*css for card container*/
+.PT-container{
+   max-width: 80%;
+   background-color: #F5FFFA;
+   padding: 1em;
+   margin: 1em !important;
+   font-family: 'Outfit', sans-serif;
+   border:5px solid #d33a2c;
+}
+
+
+
+.PT-gird-container{
+    display: grid;
+   grid-template-columns: 0.5fr 1fr;
+}
+
+
+/*css for product image*/
+.PT-image{
+    width:400px;
+    height:400px;
+}
+.PT-image-position{
+    display: grid;
+    place-content: center;
+   
+}
+/*css for content in product*/
+.PT-content{
+    margin: 1em;
+}
+
+/*css for buttons*/
+.PT-buttons{
+    padding: 0.5em 2em 0.5em 2em;
+    margin: 0.5em;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 1em;
+    font-weight: 600;
+    color: #ffff;
+    background-color: rgba(49, 49, 235, 0.774);
+    border-radius: 5px;
+    border: none;
+}
+
+.PT-buttons:hover{
+    background-color: rgba(20, 20, 143, 0.774);
+    cursor: pointer; 
+    box-shadow: 0 0 10px rgba(20, 20, 143, 0.774);
+}
+
+@media screen and (max-device-width:990px) { 
+    .PT-gird-container{
+        display: grid;
+       grid-template-columns: 1fr;
+    }
+    /*css for product image*/
+.PT-image{
+    max-width: 250px;
+    max-height: 250px;
+}
+.PT-container{
+    width: 100%;
+    background-color: #F5FFFA;
+    padding: 0.5em;
+    
+ }
+ .PT-container-position{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+}
+  }
