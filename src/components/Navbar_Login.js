@@ -1,10 +1,13 @@
 import React, {useState, useEffect} from 'react'
-import './Navbar.css'
+import './Navbar_login.css'
 import * as AiIcons from "react-icons/ai";
-import {NavbarData} from './Navbardata';
-import { BiSearchAlt2 } from "react-icons/bi";
 import { Link } from 'react-router-dom';
-export default function Navbar() {
+import { NavbarData_login } from './Navbardata_data';
+
+
+
+
+export default function Navbar_Login() {
   const [toggleMenu, setToggleMenu] = useState(false)
   const [screenWidth, setScreenWidth] = useState(window.innerWidth)
 
@@ -14,7 +17,7 @@ export default function Navbar() {
   }
 
   useEffect(() => {
-
+  
     const changeWidth = () => {
       setScreenWidth(window.innerWidth);
     }
@@ -29,19 +32,13 @@ export default function Navbar() {
 
   return (
     <nav>
-      <div className="App-name">Shopping app</div>
-      <form className="search">
-      <div>
-      <input className="inputs" type="text"/>
-      <button type="submit"><BiSearchAlt2/></button>
-      </div>
-      </form>
-      {(toggleMenu || screenWidth >1024) && (
+      
+      {(toggleMenu || screenWidth > 541) && (
       <ul className="list">
         {
-          NavbarData.map((data,index)=>{
+          NavbarData_login.map((data,index)=>{
             return(
-              <Link to={data.path} className="items" onClick={toggleNav} key={index+7}>{data.title}</Link>
+              <Link to={data.path} className="items" onClick={toggleNav} key={index+3}>{data.title}</Link>
             )
           })
         }

@@ -1,0 +1,77 @@
+
+/*container position*/
+.R-loginContainer{
+    display: grid;
+    place-items: center;
+    height: 100vh;
+    box-shadow: 10px 10px 10px 2em #978f8e,
+}  
+
+/*content inside container*/
+.R-content{
+    display: grid;
+    place-items: center;
+    width: 300px;
+    background-color: #F5FFFA;
+    padding: 0.5em;
+    border-radius: 0.5em ;
+    border: 5px solid #978f8e ;
+    
+   /* background-color:rgba(0, 0, 0, 0.7); */
+}
+
+/*css for input fields*/
+.R-input{
+    width:250px;
+    padding:10px;
+    margin: 0.5em;
+    border-radius: 5px;
+    font-family:inherit;
+    font-size: inherit;
+    outline: none;
+    border:1px solid rgb(111, 68, 212);
+    box-shadow: 0 0 10px #8db4dd;
+}
+
+/* css for input field make red*/
+.L-input2{
+    width:250px;
+    padding:10px;
+    margin: 0.5em;
+    border-radius: 5px;
+    font-family:inherit;
+    font-size: inherit;
+    outline: none;
+    border:1px solid rgb(207, 9, 9);
+    box-shadow: 0 0 10px #f30b0b;
+}
+
+.R-input:hover{
+    border:1px solid rgb(77, 10, 231);
+    box-shadow: 0 0 10px #1171d8;
+}
+
+.R-login-title{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 0.5em;
+}
+
+/* css for buttons*/
+.R-buttons{
+    padding: 0.5em 2em 0.5em 2em;
+    margin: 0.5em;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 1em;
+    font-weight: 600;
+    color: #ffff;
+    background-color: rgba(49, 49, 235, 0.774);
+    border-radius: 5px;
+    border: none;
+}
+
+.R-buttons:hover{
+    background-color: rgba(20, 20, 143, 0.774);
+    cursor: pointer; 
+    box-shadow: 0 0 10px rgba(20, 20, 143, 0.774);
+}

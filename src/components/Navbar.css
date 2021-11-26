@@ -136,7 +136,7 @@ nav div{
     text-decoration: none !important;
   }
  
-  input {
+  .inputs {
     position: absolute;
     top: 50px;
     left: 5px;
@@ -165,7 +165,7 @@ nav div{
 
 @media screen and (min-device-width: 540px) and (max-device-width:630px) { 
   
-  input {
+ .inputs {
     position: absolute;
     top: 50px;
     left: 5px;
@@ -177,7 +177,7 @@ nav div{
 
 @media screen and (min-device-width: 630px) and (max-device-width:660px) { 
   
-  input {
+  .inputs{
     position: absolute;
     top: 50px;
     left: 5px;
@@ -189,7 +189,7 @@ nav div{
 
 @media screen and (min-device-width: 661px) and (max-device-width:1024px) { 
   
-  input {
+  .inputs {
     position: absolute;
     top: 50px;
     left: 5px;

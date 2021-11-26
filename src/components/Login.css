@@ -1,0 +1,95 @@
+* {
+  box-sizing: border-box;
+  margin: 0px;
+}
+/*BACKGROUNG IMAGE CSS*/
+.image {
+  background-image: linear-gradient(
+    to left bottom,
+    #f6f4f9,
+    #f1eff7,
+    #edeaf4,
+    #e7e6f2,
+    #e2e1f0,
+    #dee1f0,
+    #dbe1f0,
+    #d7e1f0,
+    #d6e5f1,
+    #d7e9f1,
+    #daedf0,
+    #dff0ef
+  );
+}
+
+/*container position*/
+.L-container-position {
+  display: grid;
+  place-items: center;
+  height: 100vh;
+}
+
+.L-content {
+  width: 300px;
+  background-color: rgb(173, 240, 240);
+  padding: 1em;
+  border-radius: 0.5em;
+  font-weight: 600;
+  color: rgb(39, 7, 116);
+ 
+}
+
+.L-content-position {
+  display: grid;
+  place-items: center;
+}
+
+/*css for input fields*/
+.L-input {
+  width: 250px;
+  padding: 10px;
+  margin: 0.5em;
+  border-radius: 5px;
+  font-family: inherit;
+  font-size: inherit;
+  outline: none;
+  border: 1px solid rgb(111, 68, 212);
+  box-shadow: 0 0 10px #8db4dd;
+}
+
+.L-input:hover {
+  border: 1px solid rgb(77, 10, 231);
+  box-shadow: 0 0 10px #1171d8;
+}
+
+/*css for title in that card*/
+.L-login-title {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0.5em;
+}
+
+/*forget password password css*/
+.forgetpassword-position {
+  display: flex;
+  justify-content: flex-end;
+  color: red;
+}
+
+/*css for buttons*/
+.L-buttons {
+  padding: 0.5em 2em 0.5em 2em;
+  margin: 0.5em;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: 1em;
+  font-weight: 600;
+  color: #ffff;
+  background-color: rgba(49, 49, 235, 0.774);
+  border-radius: 5px;
+  border: none;
+}
+
+.L-buttons:hover {
+  background-color: rgba(20, 20, 143, 0.774);
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(20, 20, 143, 0.774);
+}
