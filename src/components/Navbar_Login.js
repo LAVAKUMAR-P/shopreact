@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react'
-import './Navbar_login.css'
 import * as AiIcons from "react-icons/ai";
 import { Link } from 'react-router-dom';
 import { NavbarData_login } from './Navbardata_data';
+import "./Navbarlog.css"
 
 
 
@@ -31,20 +31,20 @@ export default function Navbar_Login() {
   }, [])
 
   return (
-    <nav>
+    <nav className="navbar">
       
       {(toggleMenu || screenWidth > 541) && (
-      <ul className="list">
+      <ul className="listlogin">
         {
           NavbarData_login.map((data,index)=>{
             return(
-              <Link to={data.path} className="items" onClick={toggleNav} key={index+3}>{data.title}</Link>
+              <Link to={data.path} className="itemslogin" onClick={toggleNav} key={index+3}>{data.title}</Link>
             )
           })
         }
     </ul>
       )}
-      {!(toggleMenu) ? <AiIcons.AiOutlineMenu onClick={toggleNav} className="btn"/>:<AiIcons.AiOutlineClose onClick={toggleNav} className="btn"/>}
+      {!(toggleMenu) ? <AiIcons.AiOutlineMenu onClick={toggleNav} className="btnlogin"/>:<AiIcons.AiOutlineClose onClick={toggleNav} className="btn"/>}
     </nav>
   )
 }

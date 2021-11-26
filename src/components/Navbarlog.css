@@ -1,18 +1,15 @@
 *{
     padding: 0px;
 }
-nav {
+.navbar {
   width: 100%;
   height: 80px;
   background: #d33a2c;
   position: sticky;
   margin-top: 0px;
-  
 }
-nav img {
-  height: 50px;
-}
-.list {
+
+.listlogin {
   list-style-type: none;
   height: 100%;
   display: flex;
@@ -20,7 +17,7 @@ nav img {
   align-items: center;
   position: relative;
 }
-.items {
+.itemslogin {
   margin-right: 20px;
   font-size: 20px;
   text-transform: uppercase;
@@ -28,7 +25,7 @@ nav img {
   cursor: pointer;
 }
 
-.items:hover {
+.itemslogin:hover {
   color: tomato;
   text-decoration: none;
 }
@@ -37,7 +34,7 @@ a {
   text-decoration: none;
 }
 
-.btn {
+.btnlogin {
   display: none;
   position: absolute;
   right: 10px;
@@ -53,7 +50,7 @@ a {
     height: 50px;
   }
 
-  .list {
+  .listlogin {
     position: absolute;
     width: 100%;
     height: 100vh;
@@ -63,10 +60,10 @@ a {
     top: 50px;
     margin-top: 0px;
   }
-  .items:nth-child(1) {
+  .itemslogin:nth-child(1) {
     border-top: 1px solid rgba(255, 255, 255, 0.555);
   }
-  .items {
+  .itemslogin {
     width: 100vw;
     border-top: 1px solid rgba(255, 255, 255, 0.555);
     text-align: center;
@@ -76,7 +73,7 @@ a {
     justify-content: center;
     align-items: center;
   }
-  .btn {
+  .btnlogin {
     display: block;
     position: absolute;
     right: 10px;

@@ -6,10 +6,10 @@
 .App-name{
   color:#fff;
   size: 1em;
-  margin: 3px;
+  margin-top: 10px;
 }
 
-nav {
+.navhome {
   width: 100%;
   height: 80px;
   background: #d33a2c;
@@ -20,7 +20,7 @@ nav {
   justify-content: space-between;
   align-items: center;
 }
-nav img {
+.navhome img {
   height: 50px;
 }
 .list {
@@ -89,19 +89,23 @@ form.search button {
   cursor: pointer;
 }
 
-nav div{
+.navhome div{
   min-width: 20%;
 }
 
-@media screen and (max-width:1024px) {
-  nav {
+@media screen and (max-width:1280px) {
+  .navhome {
     width: 100%;
-    height: 50px;
-    padding-bottom: 50px;
+    padding-bottom: 100px !important;
   }
 
-  nav div{
+  .navhome div{
     min-width: 80%;
+  }
+  .App-name{
+    color:#fff;
+    size: 1em;
+    margin-top: 50px !important;
   }
 
   .list {
@@ -165,36 +169,36 @@ nav div{
 
 @media screen and (min-device-width: 540px) and (max-device-width:630px) { 
   
- .inputs {
+  .inputs {
     position: absolute;
     top: 50px;
     left: 5px;
     margin-top: 5px;
-    width: 74%;
+    width: 80% !important;
     display: inline-block;
   } 
 }
 
 @media screen and (min-device-width: 630px) and (max-device-width:660px) { 
   
-  .inputs{
-    position: absolute;
-    top: 50px;
-    left: 5px;
-    margin-top: 5px;
-    width: 75%;
-    display: inline-block;
-  } 
-}
-
-@media screen and (min-device-width: 661px) and (max-device-width:1024px) { 
-  
   .inputs {
     position: absolute;
     top: 50px;
     left: 5px;
     margin-top: 5px;
-    width: 77%;
+    width: 80% !important;
+    display: inline-block;
+  } 
+}
+
+@media screen and (min-device-width: 661px) and (max-device-width:1280px) { 
+  
+.inputs {
+    position: absolute;
+    top: 50px;
+    left: 5px;
+    margin-top: 5px;
+    width: 80% !important;
     display: inline-block;
   } 
 }

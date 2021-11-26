@@ -29,7 +29,7 @@
 .R-content{
     display: grid;
     place-items: center;
-    width: 300px;
+    width: 350px;
     background-color: rgb(173, 240, 240);
     padding: 0.5em;
     border-radius: 0.5em;

@@ -55,7 +55,7 @@ function ProductReg(){
               {(formik) => (
                 <div>
                   <div className="R-content">
-                    <div className="R-login-title">Register</div>
+                    <div className="R-login-title">CREATE PRODUCT</div>
                     <Form>
                       <Textfield
                         label="Product Name"

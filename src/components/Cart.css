@@ -16,8 +16,8 @@
 
 /*css for card container*/
 .CT-container{
-   min-width: 500px;
-   max-height: 200px;
+   min-width:80%;
+   min-height: 200px;
    background-color: #F5FFFA;
    padding: 1em;
    margin: 1em !important;

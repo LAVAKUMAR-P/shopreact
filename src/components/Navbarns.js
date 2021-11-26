@@ -4,7 +4,7 @@ import * as AiIcons from "react-icons/ai";
 import {NavbarData} from './Navbardata';
 import { BiSearchAlt2 } from "react-icons/bi";
 import { Link } from 'react-router-dom';
-export default function Navbar() {
+export default function Navbarns() {
   const [toggleMenu, setToggleMenu] = useState(false)
   const [screenWidth, setScreenWidth] = useState(window.innerWidth)
 
@@ -31,12 +31,6 @@ export default function Navbar() {
   return (
     <nav className="navhome">
       <div className="App-name">Shopping app</div>
-      <form className="search">
-      <div>
-      <input className="inputs" type="text"/>
-      <button type="submit"><BiSearchAlt2/></button>
-      </div>
-      </form>
       {(toggleMenu || screenWidth >1280) && (
       <ul className="list">
         {

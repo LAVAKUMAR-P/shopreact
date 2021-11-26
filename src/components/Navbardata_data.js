@@ -6,6 +6,10 @@ export const NavbarData_login =[
     },
     {
         title : "Login",
+        path:"/login",
+    },
+    {
+        title : "Home",
         path:"/",
     },
 ]

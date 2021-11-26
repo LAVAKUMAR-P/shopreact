@@ -2,12 +2,11 @@ import React from "react";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import "./Register.css";
-import Navbar_login from "./Navbar_Login";
 import axios from "axios";
-import { useHistory } from "react-router-dom";
 import Textfield from "./Textfield";
 import env from "./settings";
-import Bbar from "./Bbar";
+import Navbar_Login from "./Navbar_Login";
+
 
 
 function Register() {
@@ -27,11 +26,12 @@ function Register() {
       .required("Confirm password is required"),
   });
 
-  let history = useHistory();
+  
   return (
     <>
+    <Navbar_Login/>
       <div className="Register-image">
-        <Navbar_login />
+     
         <section className="R-loginContainer">
           <div>
             <Formik
@@ -54,7 +54,6 @@ function Register() {
                   let postData = await axios.post(`${env.api}/register`, data);
                   window.alert("User registered");
 
-                  history.push("/");
                 } catch (error) {
                   if (error.message === "Request failed with status code 409") {
                     window.alert("Mailid is already registered");
@@ -116,7 +115,7 @@ function Register() {
           </div>
         </section>
       </div>
-      <Bbar/>
+  
     </>
   );
 }

@@ -2,12 +2,12 @@ import React from "react";
 import * as Yup from "yup";
 import { Formik, Form } from "formik";
 import "./Login.css";
-import Navbar_login from "./Navbar_Login";
 import axios from "axios";
-import { Link, useHistory } from "react-router-dom";
+import { Link} from "react-router-dom";
 import Textfield from "./Textfield";
 import env from "./settings";
-import Bbar from "./Bbar";
+import Navbar_Login from "./Navbar_Login";
+
 
 function Login() {
   const validate = Yup.object({
@@ -17,11 +17,11 @@ function Login() {
       .required("Password is required"),
   });
 
-  let history = useHistory();
+  
 
   return (
     <>
-       <Navbar_login />
+    <Navbar_Login/>
       <div className="image">
         <div className="L-container-position">
           <Formik
@@ -36,11 +36,11 @@ function Login() {
                   `${env.api}/login`,
                   values
                 );
-                
+                console.log(postData);
                 window.localStorage.setItem("app_token", postData.data.token);
                 window.localStorage.setItem("action", postData.data.unconditional);
                 window.alert("Login sucessfull");
-                history.push("/home");
+               
               } catch (error) {
                 console.log("error");
                 if (error.message === "Request failed with status code 401") {
@@ -82,7 +82,7 @@ function Login() {
           </Formik>
         </div>
       </div>
-      <Bbar/>
+    
     </>
   );
 }
