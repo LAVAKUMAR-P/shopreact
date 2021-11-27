@@ -4,26 +4,35 @@ import * as Yup from "yup";
 import Textfield from "./Textfield";
 import env from "./settings";
 import axios from "axios";
-import './ProductReg.css'
+import "./ProductReg.css";
+import Navbarns from "./Navbarns";
+import { Link } from "react-router-dom";
 
-function ProductReg(){
-    const validate = Yup.object({
-        title: Yup.string()
-          .max(20, "Must be 15 characters or less")
-          .required("Required"),
-          category: Yup.string()
-          .max(30, "Must be 30 characters or less")
-          .required("Required"),
-          price: Yup.number().required("price required"),
-          image: Yup.string().required("Image required"),
-          description: Yup.string().required("Description required"),
-      });
-    
- return(
+function ProductReg() {
+  const validate = Yup.object({
+    title: Yup.string()
+      .max(20, "Must be 15 characters or less")
+      .required("Required"),
+    category: Yup.string()
+      .max(30, "Must be 30 characters or less")
+      .required("Required"),
+    price: Yup.number().required("price required"),
+    image: Yup.string().required("Image required"),
+    description: Yup.string().required("Description required"),
+  });
+
+  return (
     <>
+      <Navbarns />
+      <div className="CT-overall">
+      <h4> CREAT PRODUCT</h4>
+                  <Link to="/productlist">
+                    <button className="CT-buttons">PRODUCT LIST</button>
+                  </Link>
+      </div>
       <div className="Register-image">
-       
         <section className="R-loginContainer">
+       
           <div>
             <Formik
               initialValues={{
@@ -35,12 +44,18 @@ function ProductReg(){
               }}
               validationSchema={validate}
               onSubmit={async (values) => {
-               
                 try {
-                  let postData = await axios.post(`${env.api}/productregister`, values);
+                  let postData = await axios.post(
+                    `${env.api}/productregister`,
+                    { values },
+                    {
+                      headers: {
+                        Authorization: window.localStorage.getItem("app_token"),
+                      },
+                    }
+                  );
                   window.alert("User registered");
-                 console.log(values);
-                  
+                  console.log(values);
                 } catch (error) {
                   if (error.message === "Request failed with status code 409") {
                     window.alert("Mailid is already registered");
@@ -54,6 +69,7 @@ function ProductReg(){
             >
               {(formik) => (
                 <div>
+                 
                   <div className="R-content">
                     <div className="R-login-title">CREATE PRODUCT</div>
                     <Form>
@@ -62,7 +78,6 @@ function ProductReg(){
                         name="title"
                         type="text"
                         placeholder="Enter Product Name"
-                       
                       />
                       <Textfield
                         label="Product category"
@@ -102,9 +117,8 @@ function ProductReg(){
           </div>
         </section>
       </div>
-      
     </>
- )
+  );
 }
 
-export default ProductReg
+export default ProductReg;

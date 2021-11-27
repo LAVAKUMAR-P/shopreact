@@ -1,22 +1,22 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@600&display=swap');
 /*container position*/
 .R-loginContainer{
     display: grid;
     place-items: center;
     height: 100vh;
-    box-shadow: 10px 10px 10px 2em #978f8e,
+   
 }  
 
 /*content inside container*/
 .R-content{
     display: grid;
     place-items: center;
-    width: 300px;
+    width: 350px;
     background-color: #F5FFFA;
     padding: 0.5em;
     border-radius: 0.5em ;
-    border: 5px solid #978f8e ;
-    
+    border: 5px solid #d33a2c;
+    font-family: 'Outfit', sans-serif;
    /* background-color:rgba(0, 0, 0, 0.7); */
 }
 
@@ -26,7 +26,7 @@
     padding:10px;
     margin: 0.5em;
     border-radius: 5px;
-    font-family:inherit;
+    font-family: 'Outfit', sans-serif;
     font-size: inherit;
     outline: none;
     border:1px solid rgb(111, 68, 212);

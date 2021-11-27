@@ -9,7 +9,7 @@ export default function Navbar() {
   const [screenWidth, setScreenWidth] = useState(window.innerWidth)
 
  const addoption=window.localStorage.getItem("action");
- console.log("addoption",addoption);
+
   const toggleNav = () => {
     setToggleMenu(!toggleMenu)
   }
@@ -51,7 +51,7 @@ export default function Navbar() {
        
     } 
     {
-       addoption =="true"?  <Link to="/login" className="items" onClick={toggleNav}>Admin</Link>:""
+       addoption =="true"?  <Link to="/productlist" className="items" onClick={toggleNav}>Admin</Link>:""
     }
     </ul>
       )}

@@ -1,21 +1,4 @@
-/*BACKGROUNG IMAGE CSS*/
-.Register-image {
-    background-image: linear-gradient(
-    to left bottom,
-    #f6f4f9,
-    #f1eff7,
-    #edeaf4,
-    #e7e6f2,
-    #e2e1f0,
-    #dee1f0,
-    #dbe1f0,
-    #d7e1f0,
-    #d6e5f1,
-    #d7e9f1,
-    #daedf0,
-    #dff0ef
-  );
-  }
+
 
 
 /*container position*/
@@ -30,7 +13,7 @@
     display: grid;
     place-items: center;
     width: 350px;
-    background-color: rgb(173, 240, 240);
+    background-color: #F5FFFA;
     padding: 0.5em;
     border-radius: 0.5em;
     font-weight: 600;
