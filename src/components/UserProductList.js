@@ -24,7 +24,7 @@ function UserProductList() {
   }, []);
 
   const Deletedata = async (id) => {
-    console.log(id);
+   
     try {
       let confirm = window.confirm("Are you want to Delete data?");
       if (confirm) {

@@ -13,12 +13,32 @@ import UserProductList from "./components/UserProductList";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import UserProductedit from "./components/UserProductedit";
+import { useDispatch } from "react-redux";
+import axios from "axios";
+import { setProducts } from "./redux/action/productAction";
+import { useEffect } from "react";
+import env from "./components/settings.js";
 
 
 
  
 function App(){
- 
+
+  const dispatch =useDispatch();
+
+  useEffect(async() => {
+    try {
+      const fetchdata = await axios.get(`${env.api}/allproducts`);
+      console.log(fetchdata.data);
+      let data=fetchdata.data.slice().sort((a,b)=>{ return a.price - b.price})
+      dispatch(setProducts(data));
+    } catch (error) {
+      console.log(error);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+
   return (
     <>
     <Router>

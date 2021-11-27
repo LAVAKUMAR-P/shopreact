@@ -10,19 +10,9 @@ import { setProducts } from '../redux/action/productAction';
 
 function Home() {
   const [display,setdisplay]=useState();
-  const dispatch =useDispatch();
+  
    
-  useEffect(async() => {
-    try {
-      const fetchdata = await axios.get(`https://fakestoreapi.com/products`);
-      console.log(fetchdata.data);
-      let data=fetchdata.data.slice().sort((a,b)=>{ return a.price - b.price})
-      dispatch(setProducts(data));
-    } catch (error) {
-      console.log(error);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  
    
     const products = useSelector((state) => state.allproducts.products);
     
@@ -31,7 +21,7 @@ function Home() {
             <Navbar/>
             <div className="H-Card-gird">
               {
-                products.length >0  ? products.map((data)=>{return(<Card Data={data} />)}):<h5>Loading......</h5>
+                products.length >0  ? products.map((data,index)=>{return(<Card Data={data} key={index} />)}):<h5>Loading......</h5>
               }
             
             </div>
