@@ -172,7 +172,7 @@ function Cart() {
                   <div className="CT-image-position">
                     <img
                       className="CT-image"
-                      src="https://fakestoreapi.com/img/61sbMiUnoGL._AC_UL640_QL65_ML3_.jpg"
+                      src={Data.values.image}
                       alt="image"
                     />
                   </div>
