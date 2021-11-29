@@ -5,6 +5,7 @@ import Navbar from "./Navbar";
 import axios from "axios";
 import Loading_page from "./Loading_page";
 import { Link } from "react-router-dom";
+import "./Order.css"
 
 function Order() {
     const [Loading, setLoading] = useState(true);
@@ -36,9 +37,9 @@ function Order() {
       {Loading ? (
         <Loading_page />
       ) : (
-        <div className="CT-overall ">
-          <div className="CT-container">
-            <div className="CT-gird-container2">
+        <div className="OR-overall ">
+          <div className="OR-container">
+            <div className="OR-gird-container2">
               
                 <div>
                   <div>
@@ -46,7 +47,7 @@ function Order() {
                   </div>
                   <div>
                  <Link to="/">
-                         <button className="CT-buttons">Home page</button>
+                         <button className="OR-buttons">Home page</button>
                 </Link>
                  </div>
                 </div>
@@ -54,16 +55,16 @@ function Order() {
           </div>
           {cart.map((Data, index) => {
             return (
-              <div className="CT-container" key={index + 3}>
-                <div className="CT-gird-container">
-                  <div className="CT-image-position">
+              <div className="OR-container" key={index + 3}>
+                <div className="OR-gird-container">
+                  <div className="OR-image-position">
                     <img
-                      className="CT-image"
+                      className="OR-image"
                       src={Data.values.image}
                       alt="image"
                     />
                   </div>
-                  <div className="CT-content">
+                  <div className="OR-content">
                     <div>Product Name:</div>
                     <div>{Data.values.title}</div>
                     <div>product price:</div>

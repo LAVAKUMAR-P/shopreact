@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import Loading_page from "./Loading_page";
 import Navbarns from "./Navbarns";
 import env from "./settings";
+import "./UserProductList.css"
 
 function UserProductList() {
   const [Data, setData] = useState([]);
@@ -50,14 +51,19 @@ function UserProductList() {
       <Navbarns />
 { Loading? <Loading_page/>:
   <div>
-  <div className="CT-overall">
+  <div className="US-overall">
         <h4>ALL PRODUCTS</h4>
+        <div>
         <Link to="/productregister">
-          <button className="CT-buttons">CREAT PRODUCT</button>
+          <button className="US-buttons">CREAT PRODUCT</button>
         </Link>
-        <div className="CT-container">
-          <div className="CT-gird-container">
-            <div className="CT-content">
+        <Link to="/">
+          <button className="US-buttons">ALL ORDERS</button>
+        </Link>
+        </div>
+        <div className="US-container">
+          <div className="US-gird-container">
+            <div className="US-content">
               <h5>TOTEL NO DATA</h5>
               <h5>{Data.length}</h5>
             </div>
@@ -67,17 +73,17 @@ function UserProductList() {
 
       { Data.map((data, index) => {
         return (
-          <div className="CT-overall" key={index}>
-            <div className="CT-container">
-              <div className="CT-gird-container">
-                <div className="CT-image-position">
+          <div className="US-overall" key={index}>
+            <div className="US-container">
+              <div className="US-gird-container">
+                <div className="US-image-position">
                   <img
-                    className="CT-image"
+                    className="US-image"
                     src={data.values.image}
                     alt="image"
                   />
                 </div>
-                <div className="CT-content">
+                <div className="US-content">
                   <div>Product Name:</div>
                   <div>{data.values.title}</div>
                   <div>product price:</div>
@@ -86,11 +92,11 @@ function UserProductList() {
                   <div>{data.values.category}</div>
                   <div>
                     <Link to={`/productedit/${data._id}`}>
-                      <button className="CT-buttons">EDIT</button>
+                      <button className="US-buttons">EDIT</button>
                     </Link>
 
                     <button
-                      className="CT-buttons"
+                      className="US-buttons"
                       onClick={() => {
                         Deletedata(data._id);
                       }}
