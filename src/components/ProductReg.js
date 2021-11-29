@@ -18,6 +18,10 @@ function ProductReg() {
       .required("Required"),
     price: Yup.number().required("price required"),
     image: Yup.string().required("Image required"),
+    rating: Yup.number().required("price required").min(0, 'Min value 0.')
+    .max(5, 'Max value 5.'),
+    count: Yup.number().required("price required").min(1, 'Min value 0.')
+    .max(2, 'Max value 5.'),
     description: Yup.string().required("Description required"),
   });
 
@@ -40,6 +44,8 @@ function ProductReg() {
                 category: "",
                 price: "",
                 image: "",
+                count:"",
+                rating:"",
                 description: "",
               }}
               validationSchema={validate}
@@ -90,6 +96,18 @@ function ProductReg() {
                         name="price"
                         type="number"
                         placeholder="Enter Product price"
+                      />
+                      <Textfield
+                        label="Count"
+                        name="count"
+                        type="number"
+                        placeholder="Enter Number of product"
+                      />
+                      <Textfield
+                        label="Rating"
+                        name="rating"
+                        type="number"
+                        placeholder="Enter Rating 1 to 5"
                       />
                       <Textfield
                         label="Image"

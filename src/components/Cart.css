@@ -31,13 +31,21 @@
     margin: 0px;
 }
 
-
+.CT-newcontainer{
+    border:5px solid #d33a2c;
+    margin: 0px; 
+}
 
 .CT-gird-container{
     display: grid;
-   grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
 }
 
+.CT-gird-container2{
+    display: grid;
+    grid-template-columns: 1fr;
+    place-items: center;
+}
 
 /*css for product image*/
 .CT-image{
@@ -52,6 +60,7 @@
 /*css for content in product*/
 .CT-content{
     margin: 1em;
+    padding:10px;
 }
 
 /*css for buttons*/

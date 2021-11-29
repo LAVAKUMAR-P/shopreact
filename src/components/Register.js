@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import "./Register.css";
@@ -6,7 +6,8 @@ import axios from "axios";
 import Textfield from "./Textfield";
 import env from "./settings";
 import Navbar_Login from "./Navbar_Login";
-
+import {useNavigate} from "react-router-dom";
+import Loading_page from "./Loading_page";
 
 
 function Register() {
@@ -26,95 +27,106 @@ function Register() {
       .required("Confirm password is required"),
   });
 
+  const Navigate=useNavigate()
+  const[Loading,setLoading]=useState(false);
+
+  const postData=async(data)=>{
+    try {
+      let Data = await axios.post(`${env.api}/register`, data);
+      window.alert("User registered");
+      setLoading(false);
+      Navigate("/login")
+    } catch (error) {
+      setLoading(false)
+      if (error.message === "Request failed with status code 409") {
+        window.alert("Mailid is already registered");
+        console.log(error);
+      } else {
+        window.alert("check your network");
+        console.log(error);
+      }
+    }
+  }
   
   return (
     <>
     <Navbar_Login/>
-      <div className="Register-image">
+     {
+       Loading ? <Loading_page/>: <div className="Register-image">
      
-        <section className="R-loginContainer">
-          <div>
-            <Formik
-              initialValues={{
-                firstName: "",
-                lastName: "",
-                email: "",
-                password: "",
-                confirmPassword: "",
-              }}
-              validationSchema={validate}
-              onSubmit={async (values) => {
-                let data = {
-                  firstName: values.firstName,
-                  lastName: values.lastName,
-                  password: values.password,
-                  email: values.email,
-                };
-                try {
-                  let postData = await axios.post(`${env.api}/register`, data);
-                  window.alert("User registered");
-
-                } catch (error) {
-                  if (error.message === "Request failed with status code 409") {
-                    window.alert("Mailid is already registered");
-                    console.log(error);
-                  } else {
-                    window.alert("check your network");
-                    console.log(error);
-                  }
-                }
-              }}
-            >
-              {(formik) => (
-                <div>
-                  <div className="R-content">
-                    <div className="R-login-title">Register</div>
-                    <Form>
-                      <Textfield
-                        label="First Name"
-                        name="firstName"
-                        type="text"
-                        placeholder="Enter First Name"
-                        placeholder="Enter your first Name"
-                      />
-                      <Textfield
-                        label="last Name"
-                        name="lastName"
-                        type="text"
-                        placeholder="Enter Last  Name"
-                      />
-                      <Textfield
-                        label="Email"
-                        name="email"
-                        type="email"
-                        placeholder="Enter email"
-                      />
-                      <Textfield
-                        label="password"
-                        name="password"
-                        type="password"
-                        placeholder="Enter password"
-                      />
-                      <Textfield
-                        label="Confirm Password"
-                        name="confirmPassword"
-                        type="password"
-                        placeholder="Confirm Password"
-                      />
-                      <button className="R-buttons" type="submit">
-                        Register
-                      </button>
-                      <button className="R-buttons" type="reset">
-                        Reset
-                      </button>
-                    </Form>
-                  </div>
-                </div>
-              )}
-            </Formik>
-          </div>
-        </section>
-      </div>
+       <section className="R-loginContainer">
+         <div>
+           <Formik
+             initialValues={{
+               firstName: "",
+               lastName: "",
+               email: "",
+               password: "",
+               confirmPassword: "",
+             }}
+             validationSchema={validate}
+             onSubmit={async (values) => {
+               let data = {
+                 firstName: values.firstName,
+                 lastName: values.lastName,
+                 password: values.password,
+                 email: values.email,
+               };
+               postData(data);
+               setLoading(true);
+             }}
+           >
+             {(formik) => (
+               <div>
+                 <div className="R-content">
+                   <div className="R-login-title">Register</div>
+                   <Form>
+                     <Textfield
+                       label="First Name"
+                       name="firstName"
+                       type="text"
+                       placeholder="Enter First Name"
+                       placeholder="Enter your first Name"
+                     />
+                     <Textfield
+                       label="last Name"
+                       name="lastName"
+                       type="text"
+                       placeholder="Enter Last  Name"
+                     />
+                     <Textfield
+                       label="Email"
+                       name="email"
+                       type="email"
+                       placeholder="Enter email"
+                     />
+                     <Textfield
+                       label="password"
+                       name="password"
+                       type="password"
+                       placeholder="Enter password"
+                     />
+                     <Textfield
+                       label="Confirm Password"
+                       name="confirmPassword"
+                       type="password"
+                       placeholder="Confirm Password"
+                     />
+                     <button className="R-buttons" type="submit">
+                       Register
+                     </button>
+                     <button className="R-buttons" type="reset">
+                       Reset
+                     </button>
+                   </Form>
+                 </div>
+               </div>
+             )}
+           </Formik>
+         </div>
+       </section>
+     </div>
+     }
   
     </>
   );

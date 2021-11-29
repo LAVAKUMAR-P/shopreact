@@ -1,0 +1,44 @@
+.Loding-bacgroung{
+        background: #d33a2c;
+        background-position: center;
+        background-repeat: repeat;
+        background-size: cover;
+        background-blend-mode: darken;
+}
+
+
+.Loading_Container_position {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.Loding_container {
+  display: grid;
+  place-items: center;
+  min-width: 300px;
+  max-height: 250px;
+  padding: 10px;
+  height: 500px;
+  background-color: #E5EFF1;
+  border-radius: 20px;
+  margin: 10px;
+}
+.Loading {
+  width: 200px;
+  height: 200px;
+}
+
+.Loding_typing{
+    font-size: 1.5em;
+    color: blue;
+    font-weight: 900;
+}
+
+@media screen and (min-device-width: 270px) and (max-device-width: 660px) {
+   
+    .Loading {
+        width: 60%;
+      }
+    }

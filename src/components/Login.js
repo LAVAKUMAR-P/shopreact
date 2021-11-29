@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import * as Yup from "yup";
 import { Formik, Form } from "formik";
 import "./Login.css";
 import axios from "axios";
-import { Link} from "react-router-dom";
+import { Link,useNavigate} from "react-router-dom";
 import Textfield from "./Textfield";
 import env from "./settings";
 import Navbar_Login from "./Navbar_Login";
+import Loading_page from "./Loading_page";
 
 
 function Login() {
@@ -17,12 +18,37 @@ function Login() {
       .required("Password is required"),
   });
 
-  
+  const Navigate=useNavigate()
+  const[Loading,setLoading]=useState(false);
+ 
+  const postData=async(values)=>{
+    try {
+      let postData = await axios.post(
+        `${env.api}/login`,
+        values
+      );
+      window.localStorage.setItem("app_token", postData.data.token);
+      window.localStorage.setItem("action", postData.data.unconditional);
+      setLoading(false)
+      window.alert("Login sucessfull");
+      Navigate("/")
+    } catch (error) {
+      setLoading(false)
+      console.log("error");
+      if (error.message === "Request failed with status code 401") {
+        window.alert("user name or password miss match");
+      } else {
+        window.alert("Check your network");
+      }
+    }
+  }
+   
 
   return (
     <>
     <Navbar_Login/>
-      <div className="image">
+      {
+        Loading ? <Loading_page/>:<div className="image">
         <div className="L-container-position">
           <Formik
             initialValues={{
@@ -31,24 +57,8 @@ function Login() {
             }}
             validationSchema={validate}
             onSubmit={async (values) => {
-              try {
-                let postData = await axios.post(
-                  `${env.api}/login`,
-                  values
-                );
-                console.log(postData);
-                window.localStorage.setItem("app_token", postData.data.token);
-                window.localStorage.setItem("action", postData.data.unconditional);
-                window.alert("Login sucessfull");
-               
-              } catch (error) {
-                console.log("error");
-                if (error.message === "Request failed with status code 401") {
-                  window.alert("user name or password miss match");
-                } else {
-                  window.alert("Check your network");
-                }
-              }
+              setLoading(true)
+              postData(values);
             }}
           >
             {(formik) => (
@@ -82,6 +92,7 @@ function Login() {
           </Formik>
         </div>
       </div>
+      }
     
     </>
   );

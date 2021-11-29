@@ -3,8 +3,12 @@ import './Navbar.css'
 import * as AiIcons from "react-icons/ai";
 import {NavbarData} from './Navbardata';
 import { BiSearchAlt2 } from "react-icons/bi";
-import { Link } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import env from "./settings";
 export default function Navbar() {
+  const [cart, setcart] = useState([]);
+  const Navigate=useNavigate()
   const [toggleMenu, setToggleMenu] = useState(false)
   const [screenWidth, setScreenWidth] = useState(window.innerWidth)
 
@@ -14,6 +18,22 @@ export default function Navbar() {
     setToggleMenu(!toggleMenu)
   }
 
+  const fetchcartdata = async () => {
+    try {
+      let getdata = await axios.get(`${env.api}/cartproducts`, {
+        headers: {
+          Authorization: window.localStorage.getItem("app_token"),
+        },
+      });
+      console.log(getdata);
+      setcart([...getdata.data]);
+      
+    } catch (error) {
+     
+      
+    }
+  };
+
   useEffect(() => {
 
     const changeWidth = () => {
@@ -21,12 +41,26 @@ export default function Navbar() {
     }
 
     window.addEventListener('resize', changeWidth)
-
+    fetchcartdata();
     return () => {
         window.removeEventListener('resize', changeWidth)
     }
 
   }, [])
+
+  let Logout = async () => {
+    try {
+      let check = window.confirm("Are you sure? Wanna Logout");
+      if (check) {
+        window.localStorage.removeItem("app_token");
+        window.localStorage.removeItem("action");
+        Navigate("/login");
+      }
+    } catch (error) {
+  
+        window.alert("some thing went wrong try again");
+    }
+  };
 
   return (
     <nav className="navhome">
@@ -46,8 +80,9 @@ export default function Navbar() {
             )
           })
         }
+        <Link to="/cart" className="items" onClick={toggleNav} >{`Cart [${cart.length}]`}</Link>
     {
-     addoption !==null ?  <Link to="/login" className="items" onClick={toggleNav}>Logout</Link>:   <Link to="/login" className="items" onClick={toggleNav}>Login</Link>
+     addoption !==null ?  <Link to="/login" className="items" onClick={()=>{ Logout()}}>Logout</Link>:   <Link to="/login" className="items" onClick={toggleNav}>Login</Link>
        
     } 
     {

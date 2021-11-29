@@ -3,18 +3,20 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { selectProduct } from "../redux/action/productAction";
-import Navbar from "./Navbar";
+import Loading_page from "./Loading_page";
+import Navbarns from "./Navbarns";
 import "./Product.css";
 import env from "./settings";
 
 function Product() {
-  const [Loading, setLoading] = useState(false);
+  const [Loading, setLoading] = useState(true);
   const [cart,setcart]=useState([])
   const dispach = useDispatch();
   
   const { id } = useParams();
   const fetchdata = async (id) => {
     try {
+      setLoading(true);
       let getdata = await axios.get(`${env.api}/getproductbyid/${id}`,{
         headers: {
           Authorization: window.localStorage.getItem("app_token"),
@@ -22,13 +24,16 @@ function Product() {
       });
 
       dispach(selectProduct(getdata.data));
-      setLoading(true);
+      setLoading(false);
     } catch (error) {
       console.log(error);
+      setLoading(false);
+      window.alert("Check your network");
     }
   };
   const fetchcartdata = async () => {
     try {
+      setLoading(true);
       let getdata = await axios.get(`${env.api}/cartproducts`,{
         headers: {
           Authorization: window.localStorage.getItem("app_token"),
@@ -36,11 +41,13 @@ function Product() {
       })
      
      setcart([...getdata.data])
-      setLoading(true);
+     setLoading(false);
     } catch (error) {
       console.log(error);
+      setLoading(false);
     }
   };
+  
   useEffect(() => {
     fetchdata(id);
     fetchcartdata();
@@ -49,17 +56,24 @@ function Product() {
  
 
 const Addtocart=async(product)=>{
+  console.log(product);
+  let ok = window.localStorage.getItem("app_token");
   try {
-    let getdata = await axios.post(`${env.api}/addtocart`,{values : product},{
-      headers: {
-        Authorization: window.localStorage.getItem("app_token"),
-      },
-    })
-   
-    setLoading(true);
-    window.alert("Added sucessfully");
-    fetchcartdata();
-    fetchdata(id);
+    if(ok){
+      let getdata = await axios.post(`${env.api}/addtocart`,{values : product},{
+        headers: {
+          Authorization: window.localStorage.getItem("app_token"),
+        },
+      })
+     
+      setLoading(true);
+      window.alert("Added sucessfully");
+      fetchcartdata();
+      fetchdata(id);
+    }
+    else{
+      window.alert("kindly Login")
+    }
   } catch (error) {
     console.log(error);
     window.alert("Something went wrong");
@@ -91,7 +105,7 @@ const Removecart=async(product)=>{
 
 const Removecartid=()=>{
   cart.map((obj) =>{
-    if(obj.values.cartid === product._id)
+    if(obj.cartid === product._id)
     {
       let id=obj._id;
       Removecart(id)
@@ -102,8 +116,10 @@ const Removecartid=()=>{
 
   return (
     <>
-      <Navbar />
+      <Navbarns/>
       {Loading ? (
+        <Loading_page/>
+      ) :  (product._id !== undefined ) ?
         <div className="PT-container-position">
           <div className="PT-container">
             <div className="PT-gird-container">
@@ -129,16 +145,14 @@ const Removecartid=()=>{
                 <div>product category:</div>
                 <div>{product.values.category}</div>
                 {
-                  cart.some((obj) => obj.values.cartid === product._id) ? <button className="PT-buttons" onClick={()=>{Removecartid(product._id)}}>Remove from cart</button>:<button className="PT-buttons" onClick={()=>{Addtocart(product._id)}}>Add to Cart</button>
+                  cart.some((obj) => obj.cartid === product._id) ? <button className="PT-buttons" onClick={()=>{Removecartid(product._id)}}>Remove from cart</button>:<button className="PT-buttons" onClick={()=>{Addtocart(product._id)}}>Add to Cart</button>
                 }
 
               </div>
             </div>
           </div>
         </div>
-      ) : (
-        <h5>Loading...................................</h5>
-      )}
+      :<h5>Some thing went wrong kindly refresh page</h5> }
     </>
   );
 }

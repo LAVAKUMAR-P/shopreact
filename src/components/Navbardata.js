@@ -8,12 +8,4 @@ export const NavbarData =[
         title : "Myorder",
         path:"/home",
     },
-    {
-        title : "Cart",
-        path:"/cart",
-    },
-    {
-        title : "Profile",
-        path:"/home",
-    },
 ]
