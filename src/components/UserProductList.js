@@ -53,12 +53,15 @@ function UserProductList() {
   <div>
   <div className="US-overall">
         <h4>ALL PRODUCTS</h4>
-        <div>
+        <div className="US-button-position">
         <Link to="/productregister">
           <button className="US-buttons">CREAT PRODUCT</button>
         </Link>
         <Link to="/">
           <button className="US-buttons">ALL ORDERS</button>
+        </Link>
+        <Link to="/">
+          <button className="US-buttons">ALL USERS</button>
         </Link>
         </div>
         <div className="US-container">

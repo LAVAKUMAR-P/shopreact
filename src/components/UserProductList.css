@@ -82,7 +82,18 @@
     box-shadow: 0 0 10px rgba(20, 20, 143, 0.774);
 }
 
+.US-button-position{
+    display: grid;
+    place-items: center;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
 @media screen and (max-device-width:990px) { 
+    .US-button-position{
+        display: grid;
+        place-items: center;
+        grid-template-columns: 1fr;
+    }
     .US-gird-container{
         display: grid;
        grid-template-columns: 1fr;
