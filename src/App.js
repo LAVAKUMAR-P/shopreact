@@ -18,6 +18,7 @@ import axios from "axios";
 import { setProducts } from "./redux/action/productAction";
 import { useEffect } from "react";
 import env from "./components/settings.js";
+import Order from "./components/Order";
 
 
 
@@ -46,6 +47,7 @@ function App(){
         <Route path="/" element={<Home/>} exact={true}/>
         <Route path="/login" element={<Login/>} exact={true}/>
         <Route path="/register" element={<Register/>} exact={true}/>
+        <Route path="/order" element={<Order/>} exact={true}/>
         <Route path="/cart" element={<Cart/>} exact={true}/>
         <Route path="/productlist" element={<UserProductList/>} exact={true}/>
         <Route path="/userlist" element={<UserList/>} exact={true}/>

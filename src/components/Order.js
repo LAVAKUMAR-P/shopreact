@@ -69,7 +69,7 @@ function Order() {
                     <div>product price:</div>
                     <div>{Data.values.price}</div>
                     <div>product category:</div>
-                    <div>{Data.values.price}</div>
+                    <div>{Data.values.category}</div>
                     <div>product status:</div>
                     <div>{Data.status}</div>
                     <div>product Address:</div>

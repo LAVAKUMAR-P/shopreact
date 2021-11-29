@@ -71,7 +71,7 @@
     max-height: 250px;
 }
 .PT-container{
-    width: 100%;
+   max-width:100% !important;
     background-color: #F5FFFA;
     padding: 0.5em;
     

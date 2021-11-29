@@ -6,6 +6,6 @@ export const NavbarData =[
     },
     {
         title : "Myorder",
-        path:"/home",
+        path:"/order",
     },
 ]

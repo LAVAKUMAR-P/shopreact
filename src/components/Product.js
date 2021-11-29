@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { selectProduct } from "../redux/action/productAction";
 import Loading_page from "./Loading_page";
 import Navbarns from "./Navbarns";
@@ -12,7 +12,7 @@ function Product() {
   const [Loading, setLoading] = useState(true);
   const [cart,setcart]=useState([])
   const dispach = useDispatch();
-  
+  const Navigate=useNavigate();
   const { id } = useParams();
   const fetchdata = async (id) => {
     try {
@@ -68,8 +68,7 @@ const Addtocart=async(product)=>{
      
       setLoading(true);
       window.alert("Added sucessfully");
-      fetchcartdata();
-      fetchdata(id);
+      Navigate("/cart");
     }
     else{
       window.alert("kindly Login")

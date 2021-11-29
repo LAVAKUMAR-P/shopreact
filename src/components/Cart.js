@@ -182,7 +182,7 @@ function Cart() {
                     <div>product price:</div>
                     <div>{Data.values.price}</div>
                     <div>product category:</div>
-                    <div>{Data.values.price}</div>
+                    <div>{Data.values.category}</div>
                     <div>
                       <button
                         className="CT-buttons"

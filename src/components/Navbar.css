@@ -9,7 +9,7 @@
 .App-name{
   color:#fff;
   size: 1em;
-  margin-top: 10px;
+  margin-top:none;
 }
 
 .navhome {
@@ -109,7 +109,7 @@ form.search button {
   .App-name{
     color:#fff;
     size: 1em;
-    margin-top: 50px !important;
+    margin-top: 20% !important;
   }
 
   .list {
