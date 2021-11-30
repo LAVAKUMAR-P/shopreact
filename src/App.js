@@ -19,6 +19,10 @@ import { setProducts } from "./redux/action/productAction";
 import { useEffect } from "react";
 import env from "./components/settings.js";
 import Order from "./components/Order";
+import Allorders from "./components/Allorders";
+import Allusers from "./components/Allusers";
+import Orderedit from "./components/Orderedit";
+import Address from "./components/Address";
 
 
 
@@ -49,9 +53,13 @@ function App(){
         <Route path="/register" element={<Register/>} exact={true}/>
         <Route path="/order" element={<Order/>} exact={true}/>
         <Route path="/cart" element={<Cart/>} exact={true}/>
+        <Route path="/address" element={<Address/>} exact={true}/>
+        <Route path="/allorders" element={<Allorders/>} exact={true}/>
+        <Route path="/allusers" element={<Allusers/>} exact={true}/>
         <Route path="/productlist" element={<UserProductList/>} exact={true}/>
         <Route path="/userlist" element={<UserList/>} exact={true}/>
         <Route path="/product/:id" element={<Product/>} exact={true}/>
+        <Route path="/orderedit/:id" element={<Orderedit/>} exact={true}/>
         <Route path="/productregister" element={<ProductReg/>} exact={true}/>
         <Route path="/productedit/:id" element={<UserProductedit/>} exact={true}/>
       
