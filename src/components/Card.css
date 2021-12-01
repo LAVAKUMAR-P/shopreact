@@ -9,6 +9,7 @@
     place-items: center;
     font-family: 'Outfit', sans-serif;
     margin: 5px;
+    margin-top: 10px;
 }
 .H-container:hover{
     border:5px solid #d33a2c;

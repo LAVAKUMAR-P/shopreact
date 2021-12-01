@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 function ProductReg() {
   const validate = Yup.object({
     title: Yup.string()
-      .max(20, "Must be 15 characters or less")
+      .max(40, "Must be 40 characters or less")
       .required("Required"),
     category: Yup.string()
       .max(30, "Must be 30 characters or less")
@@ -50,6 +50,7 @@ function ProductReg() {
               }}
               validationSchema={validate}
               onSubmit={async (values) => {
+                values.image=`https://drive.google.com/uc?export=view&id=${values.image}`
                 try {
                   let postData = await axios.post(
                     `${env.api}/productregister`,

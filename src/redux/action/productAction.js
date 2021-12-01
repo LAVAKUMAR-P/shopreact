@@ -17,3 +17,9 @@ export const removeSelectedProduct = () => {
       type:"REMOVE_SELECTED_PRODUCT",
     };
   };
+
+  export const removeProduct = () => {
+    return {
+      type:"REMOVE_PRODUCT",
+    };
+  };

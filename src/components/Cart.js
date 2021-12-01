@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import "./Cart.css";
 import env from "./settings";
-import Navbar from "./Navbar";
 import axios from "axios";
 import Loading_page from "./Loading_page";
 import { Link } from "react-router-dom";
+import Navbarns from "./Navbarns";
 function Cart() {
   let totel = 0;
   const [Loading, setLoading] = useState(true);
@@ -21,9 +21,13 @@ function Cart() {
       setcart([...getdata.data]);
       setLoading(false);
     } catch (error) {
-      console.log(error);
-      window.alert("Some thing went wrong");
-      setLoading(false);
+      if(error.message =="Request failed with status code 401"){
+        window.alert("Kindly Login");
+        setLoading(false);
+      }else{
+        window.alert("Some thing went wrong");
+       setLoading(false);
+      }
     }
   };
 
@@ -102,29 +106,6 @@ function Cart() {
     }
   };
 
-  const Order=async()=>{
-    try {
-      let postData = await axios.post(
-        `${env.api}/orderproduct`,{ Order: "All in my cart" },
-        {
-          headers: {
-            Authorization: window.localStorage.getItem("app_token"),
-          },
-        }
-      );
-      window.alert("Product Ordered");
-      fetchcartdata();
-    } catch (error) {
-      if (error.message === "Request failed with status code 409") {
-        window.alert("Mailid is already registered");
-        console.log(error);
-      } else {
-        window.alert("check your network");
-        console.log(error);
-      }
-    }
-  }
-
   if (!Loading) {
     cart.map((data) => {
       return (totel = data.values.price * data.values.count + totel);
@@ -133,7 +114,7 @@ function Cart() {
 
   return (
     <>
-      <Navbar />
+      <Navbarns />
       {Loading ? (
         <Loading_page />
       ) : (
@@ -146,7 +127,7 @@ function Cart() {
                   <div>
                     Totel amount:<span>{totel}</span>
                     <div>
-                <button className="CT-buttons" onClick={()=>{Order()}}>ORDER PRODUCT</button>
+                <Link to="/address"><button className="CT-buttons">ORDER PRODUCT</button></Link>
                  </div>
                   </div>
                 </>

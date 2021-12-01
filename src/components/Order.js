@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "./Cart.css";
 import env from "./settings";
-import Navbar from "./Navbar";
 import axios from "axios";
 import Loading_page from "./Loading_page";
 import { Link } from "react-router-dom";
 import "./Order.css"
+import Navbarns from "./Navbarns";
 
 function Order() {
     const [Loading, setLoading] = useState(true);
@@ -22,18 +22,23 @@ function Order() {
           setLoading(false);
         } catch (error) {
           console.log(error);
-          window.alert("Some thing went wrong");
-          setLoading(false);
+          if(error.message =="Request failed with status code 401"){
+            window.alert("Kindly Login");
+            setLoading(false);
+          }else{
+            window.alert("Some thing went wrong");
+           setLoading(false);
+          }
         }
       };
-      
+  
       useEffect(() => {
         fetchcartdata();
       }, []);
     
     return (
         <>
-      <Navbar />
+      <Navbarns />
       {Loading ? (
         <Loading_page />
       ) : (

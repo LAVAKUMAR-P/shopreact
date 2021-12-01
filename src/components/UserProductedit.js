@@ -13,7 +13,7 @@ function UserProductedit() {
     const [Loading, setLoading] = useState(true);
     const validate = Yup.object({
       title: Yup.string()
-        .max(20, "Must be 15 characters or less")
+        .max(30, "Must be 30 characters or less")
         .required("Required"),
         category: Yup.string()
         .max(30, "Must be 30 characters or less")
@@ -69,7 +69,7 @@ function UserProductedit() {
                     }}
                     validationSchema={validate}
                     onSubmit={async (values) => {
-                     
+                      values.image=`https://drive.google.com/uc?export=view&id=${values.image}`
                       try {
                         let postData = await axios.put(`${env.api}/editproduct/${id}`, { values },{
                           headers : {

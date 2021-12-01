@@ -1,22 +1,29 @@
-import React, {useState, useEffect} from 'react'
-import './Navbar.css'
+import React, { useState, useEffect } from "react";
+import "./Navbar.css";
 import * as AiIcons from "react-icons/ai";
-import {NavbarData} from './Navbardata';
+import { NavbarData } from "./Navbardata";
 import { BiSearchAlt2 } from "react-icons/bi";
-import { Link,useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 import env from "./settings";
-export default function Navbar() {
-  const [cart, setcart] = useState([]);
-  const Navigate=useNavigate()
-  const [toggleMenu, setToggleMenu] = useState(false)
-  const [screenWidth, setScreenWidth] = useState(window.innerWidth)
+import { removeProduct, setProducts } from "../redux/action/productAction";
+import { useDispatch} from 'react-redux';
 
- const addoption=window.localStorage.getItem("action");
+
+export default function Navbar(props) {
+
+
+  const dispatch =useDispatch();
+  const [cart, setcart] = useState([]);
+  const Navigate = useNavigate();
+  const [toggleMenu, setToggleMenu] = useState(false);
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+
+  const addoption = window.localStorage.getItem("action");
 
   const toggleNav = () => {
-    setToggleMenu(!toggleMenu)
-  }
+    setToggleMenu(!toggleMenu);
+  };
 
   const fetchcartdata = async () => {
     try {
@@ -27,26 +34,20 @@ export default function Navbar() {
       });
       console.log(getdata);
       setcart([...getdata.data]);
-      
-    } catch (error) {
-     
-      
-    }
+    } catch (error) {}
   };
 
   useEffect(() => {
-
     const changeWidth = () => {
       setScreenWidth(window.innerWidth);
-    }
+    };
 
-    window.addEventListener('resize', changeWidth)
+    window.addEventListener("resize", changeWidth);
     fetchcartdata();
     return () => {
-        window.removeEventListener('resize', changeWidth)
-    }
-
-  }, [])
+      window.removeEventListener("resize", changeWidth);
+    };
+  }, []);
 
   let Logout = async () => {
     try {
@@ -57,40 +58,90 @@ export default function Navbar() {
         Navigate("/login");
       }
     } catch (error) {
-  
-        window.alert("some thing went wrong try again");
+      window.alert("some thing went wrong try again");
+    }
+  };
+
+  const allproduct = async () => {
+    dispatch(removeProduct());
+    try {
+      const fetchdata = await axios.get(`${env.api}/allproducts`);
+      console.log(fetchdata.data);
+      let data = fetchdata.data.slice().sort((a, b) => {
+        return a.price - b.price;
+      });
+      dispatch(setProducts(data));
+    } catch (error) {
+      console.log(error);
     }
   };
 
   return (
     <nav className="navhome">
-      <div className="App-name">Shopping app</div>
-      <form className="search">
-      <div>
-      <input className="inputs" type="text"/>
-      <button type="submit"><BiSearchAlt2/></button>
-      </div>
+     <Link to="/"> <div className="App-name" onClick={()=>{allproduct()}}>Shopping app</div></Link>
+      <form className="search" onSubmit={props.search}>
+        <div>
+          <input
+            value={props.value}
+            onChange={(e) => {
+              props.data(e.target.value);
+            }}
+            className="inputs"
+            type="text"
+          />
+          <button type="submit">
+            <BiSearchAlt2 />
+          </button>
+        </div>
       </form>
-      {(toggleMenu || screenWidth >1280) && (
-      <ul className="list">
-        {
-          NavbarData.map((data,index)=>{
-            return(
-              <Link to={data.path} className="items" onClick={toggleNav} key={index+7}>{data.title}</Link>
-            )
-          })
-        }
-        <Link to="/cart" className="items" onClick={toggleNav} >{`Cart [${cart.length}]`}</Link>
-    {
-     addoption !==null ?  <Link to="/login" className="items" onClick={()=>{ Logout()}}>Logout</Link>:   <Link to="/login" className="items" onClick={toggleNav}>Login</Link>
-       
-    } 
-    {
-       addoption =="true"?  <Link to="/productlist" className="items" onClick={toggleNav}>Admin</Link>:""
-    }
-    </ul>
+      {(toggleMenu || screenWidth > 1280) && (
+        <ul className="list">
+          {NavbarData.map((data, index) => {
+            return (
+              <Link
+                to={data.path}
+                className="items"
+                onClick={toggleNav}
+                key={index + 7}
+              >
+                {data.title}
+              </Link>
+            );
+          })}
+          <Link
+            to="/cart"
+            className="items"
+            onClick={toggleNav}
+          >{`Cart [${cart.length}]`}</Link>
+          {addoption !== null ? (
+            <Link
+              to="/login"
+              className="items"
+              onClick={() => {
+                Logout();
+              }}
+            >
+              Logout
+            </Link>
+          ) : (
+            <Link to="/login" className="items" onClick={toggleNav}>
+              Login
+            </Link>
+          )}
+          {addoption == "true" ? (
+            <Link to="/productlist" className="items" onClick={toggleNav}>
+              Admin
+            </Link>
+          ) : (
+            ""
+          )}
+        </ul>
       )}
-      {!(toggleMenu) ? <AiIcons.AiOutlineMenu onClick={toggleNav} className="btn"/>:<AiIcons.AiOutlineClose onClick={toggleNav} className="btn"/>}
+      {!toggleMenu ? (
+        <AiIcons.AiOutlineMenu onClick={toggleNav} className="btn" />
+      ) : (
+        <AiIcons.AiOutlineClose onClick={toggleNav} className="btn" />
+      )}
     </nav>
-  )
+  );
 }

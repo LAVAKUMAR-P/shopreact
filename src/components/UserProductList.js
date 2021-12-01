@@ -1,25 +1,42 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import Loading_page from "./Loading_page";
 import Navbarns from "./Navbarns";
 import env from "./settings";
 import "./UserProductList.css"
 
 function UserProductList() {
+  const Navigate=useNavigate()
   const [Data, setData] = useState([]);
   const [Loading, setLoading] = useState(true);
+  let Logout = () => {
+    
+        window.localStorage.removeItem("app_token");
+        window.localStorage.removeItem("action");
+        Navigate("/");
+  };
+
   const fetchdata = async () => {
     setLoading(true);
     try {
-      let data = await axios.get(`${env.api}/allproducts`);
+      let data = await axios.get(`${env.api}/allproductsbyadmin`, {
+        headers: {
+          Authorization: window.localStorage.getItem("app_token"),
+        }});
       console.log(data);
       setData([...data.data]);
       setLoading(false);
     } catch (error) {
       console.log(error);
-      window.alert("Check your network");
-      setLoading(false);
+      if(error.message == "Request failed with status code 401"){
+        window.alert("You are not allowed to come here")
+        Logout();
+      }else{
+        window.alert("Check your network");
+        setLoading(false);
+      }
+     
     }
   };
   useEffect(() => {

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@600&display=swap');
+
 * {
   box-sizing: border-box;
   margin: 0px;
@@ -30,11 +32,13 @@
 
 .L-content {
   width: 300px;
-  background-color: rgb(173, 240, 240);
+  background-color:#F5FFFA;
   padding: 1em;
   border-radius: 0.5em;
   font-weight: 600;
   color: rgb(39, 7, 116);
+  border:5px solid red;
+  font-family: 'Outfit', sans-serif;
  
 }
 

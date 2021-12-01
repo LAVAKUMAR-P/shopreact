@@ -5,7 +5,7 @@ import env from "./settings";
 import axios from "axios";
 import "./ProductReg.css";
 import Navbarns from "./Navbarns";
-import { Link } from "react-router-dom";
+import { Link ,useNavigate} from "react-router-dom";
 import Textarea from "./Textarea";
 
 function Address() {
@@ -14,7 +14,7 @@ function Address() {
       .max(200, "Must be 200 characters or less")
       .required("Required"),
   });
-
+  const Navigate=useNavigate()
   return (
     <>
       <Navbarns />
@@ -35,25 +35,25 @@ function Address() {
               validationSchema={validate}
               onSubmit={async (values) => {
                 try {
-                  let postData = await axios.post(
-                    `${env.api}/productregister`,
-                    { values },
-                    {
-                      headers: {
-                        Authorization: window.localStorage.getItem("app_token"),
-                      },
+                    let postData = await axios.post(
+                      `${env.api}/orderproduct`,{ Order: "All in my cart",address:values.address },
+                      {
+                        headers: {
+                          Authorization: window.localStorage.getItem("app_token"),
+                        },
+                      }
+                    );
+                    window.alert("Product Ordered");
+                    Navigate("/cart")
+                  } catch (error) {
+                    if (error.message === "Request failed with status code 409") {
+                      window.alert("Mailid is already registered");
+                      console.log(error);
+                    } else {
+                      window.alert("check your network");
+                      console.log(error);
                     }
-                  );
-                  window.alert("User registered");
-                } catch (error) {
-                  if (error.message === "Request failed with status code 409") {
-                    window.alert("Mailid is already registered");
-                    console.log(error);
-                  } else {
-                    window.alert("check your network");
-                    console.log(error);
                   }
-                }
               }}
             >
               {(formik) => (

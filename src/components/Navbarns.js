@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import './Navbar.css'
+import './Navbarns.css'
 import * as AiIcons from "react-icons/ai";
 import {NavbarData} from './Navbardata';
 import { BiSearchAlt2 } from "react-icons/bi";
@@ -39,6 +39,7 @@ export default function Navbarns() {
         window.localStorage.removeItem("action");
         Navigate("/login");
       }
+      Navigate("/")
     } catch (error) {
   
         window.alert("some thing went wrong try again");
@@ -46,10 +47,10 @@ export default function Navbarns() {
   };
 
   return (
-    <nav className="navhome">
+    <nav className="navhome1">
       <div className="App-name">Shopping app</div>
       {(toggleMenu || screenWidth >1280) && (
-      <ul className="list">
+      <ul className="list1">
         {
           NavbarData.map((data,index)=>{
             return(
