@@ -28,13 +28,14 @@ function UserProductList() {
       setData([...data.data]);
       setLoading(false);
     } catch (error) {
+      setLoading(false);
       console.log(error);
       if(error.message == "Request failed with status code 401"){
         window.alert("You are not allowed to come here")
         Logout();
       }else{
         window.alert("Check your network");
-        setLoading(false);
+       
       }
      
     }
