@@ -73,7 +73,6 @@ function Home() {
       <Navbar data={handleSearch} value={search} search={searchData} />
       
       <div className="H-fullpage">
-      <h6>HI I am{process.env.secret}</h6>
           {isLoading ?  (
            <Loading_page/>
           ):data.length >0 ? (

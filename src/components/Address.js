@@ -80,7 +80,7 @@ function Address() {
 
     if (data.data.amount > 0) {
       const options = {
-        key: "rzp_test_rFkV7RYeBZOzCE",
+        key: env.secret,
         currency: data.data.currency,
         amount: data.data.amount.toString(),
         order_id: data.data.id,
