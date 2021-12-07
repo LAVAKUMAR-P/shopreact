@@ -8,6 +8,7 @@ import Navbarns from "./Navbarns";
 import { Link, useNavigate } from "react-router-dom";
 import Textfield from "./Textfield";
 import "./Address.css"
+import Loading_page from "./Loading_page";
 
 function loadScript(src) {
   return new Promise((resolve) => {
@@ -26,10 +27,14 @@ function loadScript(src) {
 function Address() {
   const [name, setName] = useState("");
   const [Address, setAddress] = useState("");
-
+  const [mobile, setmobile] = useState("");
+  const [email, setemail] = useState("");
+  const [isLoading, setisLoading] = useState(false)
 
   const placeorder = async (values) => {
+    setisLoading(true)
     try {
+      
       let postData = await axios.post(
         `${env.api}/orderproduct`,
         {paymentid:window.localStorage.getItem("payid")},
@@ -40,11 +45,10 @@ function Address() {
         }
       );
       window.alert("Product ordered kindly note paymentid");
-      window.alert(localStorage.getItem("orid"));
-      window.alert(localStorage.getItem("payid"));
-     
       Navigate("/cart");
+      setisLoading(false)
     } catch (error) {
+      setisLoading(false)
       window.alert("Something went wrong kindly contact us if money taken from bank account");
       window.alert(localStorage.getItem("orid"));
       window.alert(localStorage.getItem("payid"));
@@ -89,13 +93,12 @@ function Address() {
           if (ok == response.razorpay_order_id) {
             localStorage.setItem("payid", response.razorpay_payment_id);
             localStorage.setItem("sig", response.razorpay_signature);
-            // alert(
-            //   "PAYMENT SUCCESS FULL WAIT FOR A MINTUE TO COMFIRM YOUR ORDER"
-            // );
-            // alert(response.razorpay_payment_id);
-            // alert(response.razorpay_order_id);
-            // alert(response.razorpay_signature);
-
+            alert(response.razorpay_payment_id);
+            alert(response.razorpay_order_id);
+            alert(response.razorpay_signature);
+            alert(
+              "PAYMENT SUCCESS FULL WAIT FOR A MINTUE TO COMFIRM YOUR ORDER"
+            );
             placeorder()
           } else {
             alert("PAYMENT FAILED KINDLY NOTE PAYMENT ID");
@@ -104,8 +107,8 @@ function Address() {
         },
         prefill: {
           name,
-          email: "lavakumar16000@gmail.com",
-          phone_number: "7339238342",
+          email: email,
+          phone_number: mobile,
         },
       };
       const paymentObject = new window.Razorpay(options);
@@ -119,6 +122,8 @@ function Address() {
     holdername: Yup.string()
       .max(200, "Must be 200 characters or less")
       .required("Required"),
+      mobile:Yup.string().max(10,"max 10 digit").required("Enter mobile number"),
+      email: Yup.string().email("Email is invalid").required("Email is required"),
   });
   const Navigate = useNavigate();
 
@@ -143,7 +148,7 @@ function Address() {
   return (
     <>
       <Navbarns />
-      <div className="A-cartButton">
+     {isLoading ? <Loading_page/>: <><div className="A-cartButton">
                   <Link to="/cart">
                     <button className="CT-buttons">CART</button>
                   </Link>
@@ -158,10 +163,14 @@ function Address() {
             <Formik
               initialValues={{
                 holdername: "",
+                mobile:"",
+                email:"",
               }}
               validationSchema={validate}
               onSubmit={(values) => {
                 setName(values.holdername);
+                setemail(values.email);
+                setmobile(values.mobile)
                 displayRazorpay();
               }}
             >
@@ -171,10 +180,22 @@ function Address() {
                     <div className="R-login-title">ORDER PRODUCT</div>
                     <Form>
                       <Textfield
-                        label="ENTER YOUR Name"
+                        label="ENTER YOUR NAME"
                         name="holdername"
                         type="text"
                         placeholder="ENTER YOUR ADDRESS"
+                      />
+                      <Textfield
+                        label="ENTER YOUR MOBILE NUMBER"
+                        name="mobile"
+                        type="number"
+                        placeholder="MOBILE NUMBER"
+                      />
+                      <Textfield
+                        label="ENTER EMAIL"
+                        name="email"
+                        type="email"
+                        placeholder="EMAIL ID"
                       />
                       <div>
                         <h4>Your address:</h4>
@@ -198,7 +219,8 @@ function Address() {
             </Formik>
           </div>
         </section>
-      </div>
+      </div></>
+      }
     </>
   );
 }
