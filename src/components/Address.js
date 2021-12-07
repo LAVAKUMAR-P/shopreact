@@ -67,7 +67,7 @@ function Address() {
     }
 
     const data = await axios.post(
-      `http://localhost:3001/razorpay`,
+      `${env.api}/razorpay`,
       { values },
       {
         headers: {
