@@ -8,6 +8,7 @@ import env from "./settings";
 import Navbar_Login from "./Navbar_Login";
 import {useNavigate} from "react-router-dom";
 import Loading_page from "./Loading_page";
+import Textarea from "./Textarea";
 
 
 function Register() {
@@ -17,6 +18,9 @@ function Register() {
       .required("Required"),
     lastName: Yup.string()
       .max(20, "Must be 20 characters or less")
+      .required("Required"),
+      address:Yup.string()
+      .max(100, "Must be 100 characters or less")
       .required("Required"),
     email: Yup.string().email("Email is invalid").required("Email is required"),
     password: Yup.string()
@@ -61,6 +65,7 @@ function Register() {
                firstName: "",
                lastName: "",
                email: "",
+               address:"",
                password: "",
                confirmPassword: "",
              }}
@@ -69,6 +74,7 @@ function Register() {
                let data = {
                  firstName: values.firstName,
                  lastName: values.lastName,
+                 address:values.address,
                  password: values.password,
                  email: values.email,
                };
@@ -99,6 +105,12 @@ function Register() {
                        name="email"
                        type="email"
                        placeholder="Enter email"
+                     />
+                     <Textarea
+                       label="Address"
+                       name="address"
+                       type="text"
+                       placeholder="Enter Your address"
                      />
                      <Textfield
                        label="password"

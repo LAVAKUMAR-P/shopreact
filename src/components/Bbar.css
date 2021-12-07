@@ -1,0 +1,17 @@
+.B-bar{
+    width: 100%;
+    height:50px;
+    background-color: #D33A2C;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #f1f1f1;
+    cursor: pointer;
+    font-size: 1.1em;
+}
+
+.B-bar-position{
+    position: absolute;
+    bottom: 0px;
+    width: 100vw;
+}

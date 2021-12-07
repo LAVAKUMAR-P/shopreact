@@ -61,7 +61,7 @@ function ProductReg() {
                       },
                     }
                   );
-                  window.alert("User registered");
+                  window.alert("Product registered");
                 } catch (error) {
                   if (error.message === "Request failed with status code 409") {
                     window.alert("Mailid is already registered");

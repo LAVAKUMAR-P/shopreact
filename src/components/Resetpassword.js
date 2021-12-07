@@ -6,10 +6,14 @@ import Navbar_login from "./Navbar_Login";
 import axios from "axios";
 import Textfield from "./Textfield";
 import env from "./settings";
-import { useHistory } from "react-router";
+import { useParams } from "react-router";
 
 
-function Resetpassword(props) {
+
+function Resetpassword() {
+
+  const{userId,token}=useParams()
+
   const validate = Yup.object({
     password: Yup.string()
       .min(6, "Password must be at least 6 charaters")
@@ -19,7 +23,7 @@ function Resetpassword(props) {
       .required("Confirm password is required"),
   });
 
-let history=useHistory();
+
   
   return (
     <>
@@ -35,12 +39,13 @@ let history=useHistory();
               validationSchema={validate}
               onSubmit={async (values) => {
                 try {
-                  let data =await axios.post(`${env.api}/${props.match.params.userId}/${props.match.params.token}
+                  console.log(values);
+                  let data =await axios.post(`${env.api}/reset/${userId}/${token}
                   `,{
                     password: values.password,
                   })
                  window.alert("password changed");
-                 history.push("/");
+                
                 } catch (error) {
                   if(error.message==="Request failed with status code 409"){
                     window.alert("Something went wrong");

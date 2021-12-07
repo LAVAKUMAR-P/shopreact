@@ -15,7 +15,7 @@ import Register from "./components/Register";
 import UserProductedit from "./components/UserProductedit";
 import { useDispatch } from "react-redux";
 import axios from "axios";
-import { setProducts } from "./redux/action/productAction";
+import { setFalseLoading, setProducts } from "./redux/action/productAction";
 import { useEffect } from "react";
 import env from "./components/settings.js";
 import Order from "./components/Order";
@@ -23,6 +23,9 @@ import Allorders from "./components/Allorders";
 import Allusers from "./components/Allusers";
 import Orderedit from "./components/Orderedit";
 import Address from "./components/Address";
+import Editaddress from "./components/Editaddress";
+import Forgotpassword from "./components/Forgotpassword";
+import Resetpassword from "./components/Resetpassword";
 
 
 
@@ -34,11 +37,12 @@ function App(){
   useEffect(async() => {
     try {
       const fetchdata = await axios.get(`${env.api}/allproducts`);
-      console.log(fetchdata.data);
-      let data=fetchdata.data.slice().sort((a,b)=>{ return a.price - b.price})
-      dispatch(setProducts(data));
+      dispatch(setProducts(fetchdata.data));
+      dispatch(setFalseLoading())
     } catch (error) {
       console.log(error);
+      window.alert("something went wrong check your network")
+      dispatch(setFalseLoading())
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -56,8 +60,11 @@ function App(){
         <Route path="/address" element={<Address/>} exact={true}/>
         <Route path="/allorders" element={<Allorders/>} exact={true}/>
         <Route path="/allusers" element={<Allusers/>} exact={true}/>
+        <Route path="/editaddress" element={<Editaddress/>} exact={true}/>
         <Route path="/productlist" element={<UserProductList/>} exact={true}/>
         <Route path="/userlist" element={<UserList/>} exact={true}/>
+        <Route path="/forgetpassword" element={<Forgotpassword/>} exact={true}/>
+        <Route path="/resetpassword/:userId/:token" element={<Resetpassword/>} exact={true}/>
         <Route path="/product/:id" element={<Product/>} exact={true}/>
         <Route path="/orderedit/:id" element={<Orderedit/>} exact={true}/>
         <Route path="/productregister" element={<ProductReg/>} exact={true}/>

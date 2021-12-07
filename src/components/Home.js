@@ -1,66 +1,112 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import Card from './Card';
-import Navbar from './Navbar';
-import "./Home.css"
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import Card from "./Card";
+import Navbar from "./Navbar";
+import "./Home.css";
+import axios from "axios";
 import env from "./settings";
-import { removeProduct, setProducts } from '../redux/action/productAction';
-
-
+import {
+  removeProduct,
+  setProducts,
+} from "../redux/action/productAction";
+import Bbar from "./Bbar";
+import { MdShortText } from "react-icons/md";
+import Loading_page from "./Loading_page";
 
 function Home() {
-  const [search,setsearch]=useState("");
-  const [Allresult,setAllresult]=useState(false);
-  const dispatch =useDispatch();
+  const [search, setsearch] = useState("");
+  const [data, setdata] = useState([]);
+
+
+  const handleSearch = (searchValue) => {
+    setsearch(searchValue);
+  };
   
-   const searchData=async(e)=>{
+  const dispatch = useDispatch();
+
+  const searchData = async (e) => {
     e.preventDefault();
     try {
       const searchdata = await axios.get(`${env.api}/searchproduct/${search}`);
       console.log(searchdata);
-      dispatch(removeProduct())
-      dispatch(setProducts(searchdata.data))
-      setAllresult(true)
+      dispatch(removeProduct());
+      dispatch(setProducts(searchdata.data));
     } catch (error) {
       console.log(error);
     }
-   }
-  
+  };
 
-   const allproduct=async()=>{
-    dispatch(removeProduct())
-    try {
-      const fetchdata = await axios.get(`${env.api}/allproducts`);
-      console.log(fetchdata.data);
-      let data=fetchdata.data.slice().sort((a,b)=>{ return a.price - b.price})
-      dispatch(setProducts(data));
-      setAllresult(false);
-    } catch (error) {
-      console.log(error);
+  const products = useSelector((state) => state.allproducts.products);
+  const isLoading = useSelector((state) => state.Loading);
+
+
+  const filteraction=async (e)=>{
+    e.preventDefault()
+    let value=e.target.value
+    if (data.length > 0) {
+      
+      if (value == "min") {
+        let sortdata = products.slice().sort((a, b) => {
+          return a.values.price - b.values.price;
+        });
+        setdata([...sortdata]);
+     
+      }
+       if (value == "max") {
+        let sortdata = products.slice().sort((a, b) => {
+          return b.values.price - a.values.price;
+        });
+        
+        setdata([...sortdata]);
+      } 
     }
-  }
    
-    const products = useSelector((state) => state.allproducts.products);
-    
-    return (
-        <div className="H-fullpage">
-            <Navbar data={setsearch} value={search} search={searchData}/>
-            <h1>{search} THis is search</h1>
-            <div className="H-Card-gird">
-              {
-                products.length >0  ? products.map((data,index)=>{return(<Card Data={data} key={index} />)}):<h5>Loading......</h5>
-              }
-                
-            </div>
-           {
-              Allresult ? <div className="allproductbtn-position">
-              <button class="allproductbtn" onClick={()=>{allproduct()}}>Refresh</button>
-              </div>:""
-           } 
-        </div>
-    )
+  }
+
+
+  useEffect(() => {
+    setdata([...products]);
+  }, [products]);
+  
+  return (
+    <div className="overall-container">
+      <Navbar data={handleSearch} value={search} search={searchData} />
+      <div className="H-fullpage">
+        
+          {isLoading ?  (
+           <Loading_page/>
+          ):data.length >0 ? (
+            <section>
+              
+             <div className="H-filter">
+              
+             
+             
+             <span className="H-filter-icon">
+             <MdShortText/>
+             </span>
+           
+             <select onChange={(e)=>{filteraction(e)}} className="H-filter-drop" required={true}>
+               
+             <option id="filter" className="H-filter-drop">Select one</option>
+               <option  value="max">Maximum to minimum</option>
+               <option  value="min">Minimum to maximum</option>
+             </select>
+             
+           </div>
+           <div className="H-Card-gird">
+              {data.map((data, index) => {
+                return <Card Data={data} key={index} />;
+              })}
+              </div>
+           </section>
+            ):<h5>No data found</h5> }
+         
+        
+      </div>
+      <Bbar />
+    </div>
+  );
 }
 
-export default Home
-
+export default Home;

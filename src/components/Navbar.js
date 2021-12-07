@@ -55,6 +55,7 @@ export default function Navbar(props) {
       if (check) {
         window.localStorage.removeItem("app_token");
         window.localStorage.removeItem("action");
+        console.log("I am runned");
         Navigate("/login");
       }
     } catch (error) {
@@ -114,15 +115,14 @@ export default function Navbar(props) {
             onClick={toggleNav}
           >{`Cart [${cart.length}]`}</Link>
           {addoption !== null ? (
-            <Link
-              to="/login"
+            <li
               className="items"
               onClick={() => {
                 Logout();
               }}
             >
               Logout
-            </Link>
+            </li>
           ) : (
             <Link to="/login" className="items" onClick={toggleNav}>
               Login

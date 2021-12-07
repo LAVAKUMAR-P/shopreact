@@ -1,12 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@600&display=swap');
+
 /*Card gird in home page*/
-.H-fullpage{
-    width: 100vw;
-    height: 100vh;
+.overall-container{
+    min-height: 100vh;
+   
 }
+
+/*fillter position*/
+.H-filter{
+    display: flex;
+    justify-content: flex-end;
+    margin: 1em;
+    font-size: 1em;
+}
+
+.H-filter-icon{
+    font-size: 2em;
+}
+
+/*filter for drop down */
+.H-filter-drop{
+    text-decoration: none;
+    font-family: 'Outfit', sans-serif;
+    padding: 1em;
+}
+
+.H-fullpage{
+    min-height: 100vh;
+}
+
 .H-Card-gird{
 display:grid;
 grid-template-columns: 1fr 1fr 1fr 1fr;
 gap: 5px;
+
 }
 
 /*css for the all product button*/

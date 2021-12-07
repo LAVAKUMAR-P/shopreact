@@ -23,3 +23,15 @@ export const removeSelectedProduct = () => {
       type:"REMOVE_PRODUCT",
     };
   };
+
+  export const setTrueLoading = () => {
+    return {
+      type:"SET_TRUE_LOADING",
+    };
+  };
+
+  export const setFalseLoading = () => {
+    return {
+      type:"SET_FALSE_LOADING",
+    };
+  };

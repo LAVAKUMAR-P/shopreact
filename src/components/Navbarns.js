@@ -12,7 +12,7 @@ export default function Navbarns() {
 
 
  const addoption=window.localStorage.getItem("action");
- console.log("addoption",addoption);
+
   const toggleNav = () => {
     setToggleMenu(!toggleMenu)
   }
@@ -39,7 +39,6 @@ export default function Navbarns() {
         window.localStorage.removeItem("action");
         Navigate("/login");
       }
-      Navigate("/")
     } catch (error) {
   
         window.alert("some thing went wrong try again");
@@ -60,7 +59,7 @@ export default function Navbarns() {
         }
                 <Link to="/cart" className="items" onClick={toggleNav} >Cart</Link>
     {
-     addoption !==null ?  <Link to="/login" className="items" onClick={()=>{ Logout()}}>Logout</Link>:   <Link to="/login" className="items" onClick={toggleNav}>Login</Link>
+     addoption !==null ?  <li className="items" onClick={()=>{ Logout()}}>Logout</li>:   <Link to="/login" className="items" onClick={toggleNav}>Login</Link>
        
     } 
     {

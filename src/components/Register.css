@@ -73,3 +73,16 @@
     cursor: pointer; 
     box-shadow: 0 0 10px rgba(20, 20, 143, 0.774);
 }
+
+@media screen and (max-device-width:990px) { 
+    .R-content{
+        display: grid;
+        place-items: center;
+        width: 300px;
+        background-color: #F5FFFA;
+        padding: 0.5em;
+        border-radius: 0.5em;
+        font-weight: 600;
+        color: rgb(39, 7, 116);
+    }  
+}

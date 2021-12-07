@@ -26,7 +26,7 @@ function Orderedit() {
           Authorization: window.localStorage.getItem("app_token"),
         },
       });
-      console.log(data);
+     
       setData(data.data);
       setLoading(false);
     } catch (error) {

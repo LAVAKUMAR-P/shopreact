@@ -6,6 +6,7 @@ import {useParams} from 'react-router-dom'
 import Textfield from './Textfield';
 import { Form, Formik } from 'formik';
 import * as Yup from "yup";
+import Loading_page from './Loading_page';
 
 function UserProductedit() {
    const {id}=useParams();
@@ -33,7 +34,7 @@ function UserProductedit() {
                 Authorization: window.localStorage.getItem("app_token"),
               },
             })
-            console.log(data.data);
+          
             setData(data.data)
             setLoading(false)
         } catch (error) {
@@ -53,7 +54,7 @@ function UserProductedit() {
         <Navbarns/>
         
             {
-              Loading ? <h5>Loading</h5>:<div className="Register-image">
+              Loading ? <Loading_page/>:<div className="Register-image">
              
               <section className="R-loginContainer">
                 <div>

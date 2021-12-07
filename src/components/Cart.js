@@ -17,7 +17,7 @@ function Cart() {
           Authorization: window.localStorage.getItem("app_token"),
         },
       });
-      console.log(getdata);
+      
       setcart([...getdata.data]);
       setLoading(false);
     } catch (error) {
