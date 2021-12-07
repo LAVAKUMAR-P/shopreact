@@ -7,7 +7,7 @@ import "./ProductReg.css";
 import Navbarns from "./Navbarns";
 import { Link, useNavigate } from "react-router-dom";
 import Textfield from "./Textfield";
-import "./Address.css"
+import "./Address.css";
 import Loading_page from "./Loading_page";
 
 function loadScript(src) {
@@ -29,15 +29,14 @@ function Address() {
   const [Address, setAddress] = useState("");
   const [mobile, setmobile] = useState("");
   const [email, setemail] = useState("");
-  const [isLoading, setisLoading] = useState(false)
+  const [isLoading, setisLoading] = useState(false);
 
   const placeorder = async (values) => {
-    setisLoading(true)
+    setisLoading(true);
     try {
-      
       let postData = await axios.post(
         `${env.api}/orderproduct`,
-        {paymentid:window.localStorage.getItem("payid")},
+        { paymentid: window.localStorage.getItem("payid") },
         {
           headers: {
             Authorization: window.localStorage.getItem("app_token"),
@@ -46,10 +45,12 @@ function Address() {
       );
       window.alert("Product ordered kindly note paymentid");
       Navigate("/cart");
-      setisLoading(false)
+      setisLoading(false);
     } catch (error) {
-      setisLoading(false)
-      window.alert("Something went wrong kindly contact us if money taken from bank account");
+      setisLoading(false);
+      window.alert(
+        "Something went wrong kindly contact us if money taken from bank account"
+      );
       window.alert(localStorage.getItem("orid"));
       window.alert(localStorage.getItem("payid"));
     }
@@ -75,7 +76,6 @@ function Address() {
       }
     );
 
-   
     localStorage.setItem("orid", data.data.id);
 
     if (data.data.amount > 0) {
@@ -99,7 +99,7 @@ function Address() {
             alert(
               "PAYMENT SUCCESS FULL WAIT FOR A MINTUE TO COMFIRM YOUR ORDER"
             );
-            placeorder()
+            placeorder();
           } else {
             alert("PAYMENT FAILED KINDLY NOTE PAYMENT ID");
             alert(response.razorpay_payment_id);
@@ -122,8 +122,10 @@ function Address() {
     holdername: Yup.string()
       .max(200, "Must be 200 characters or less")
       .required("Required"),
-      mobile:Yup.string().max(10,"max 10 digit").required("Enter mobile number"),
-      email: Yup.string().email("Email is invalid").required("Email is required"),
+    mobile: Yup.string()
+      .max(10, "max 10 digit")
+      .required("Enter mobile number"),
+    email: Yup.string().email("Email is invalid").required("Email is required"),
   });
   const Navigate = useNavigate();
 
@@ -144,83 +146,91 @@ function Address() {
     fechuser();
   }, []);
 
-  
   return (
     <>
       <Navbarns />
-     {isLoading ? <Loading_page/>: <><div className="A-cartButton">
-                  <Link to="/cart">
-                    <button className="CT-buttons">CART</button>
-                  </Link>
-      </div>
-      <div className="CT-overall">
-        <h4>PLACE ORDER</h4>
-        
-      </div>
-      <div className="Register-image">
-        <section className="R-loginContainer">
-          <div>
-            <Formik
-              initialValues={{
-                holdername: "",
-                mobile:"",
-                email:"",
-              }}
-              validationSchema={validate}
-              onSubmit={(values) => {
-                setName(values.holdername);
-                setemail(values.email);
-                setmobile(values.mobile)
-                displayRazorpay();
-              }}
-            >
-              {(formik) => (
-                <div>
-                  <div className="R-content">
-                    <div className="R-login-title">ORDER PRODUCT</div>
-                    <Form>
-                      <Textfield
-                        label="ENTER YOUR NAME"
-                        name="holdername"
-                        type="text"
-                        placeholder="ENTER YOUR ADDRESS"
-                      />
-                      <Textfield
-                        label="ENTER YOUR MOBILE NUMBER"
-                        name="mobile"
-                        type="number"
-                        placeholder="MOBILE NUMBER"
-                      />
-                      <Textfield
-                        label="ENTER EMAIL"
-                        name="email"
-                        type="email"
-                        placeholder="EMAIL ID"
-                      />
-                      <div>
-                        <h4>Your address:</h4>
-                        <h5>{Address}</h5>
-                        <div>
-                      <Link  to="/editaddress"><button className="A-botton A-buttonPosition" type="reset">
-                        EDIT
-                      </button></Link>
-                      </div>
-                      </div>
-                      <button className="R-buttons" type="submit">
-                        PAY
-                      </button>
-                      <button className="R-buttons" type="reset">
-                        RESET
-                      </button>
-                    </Form>
-                  </div>
-                </div>
-              )}
-            </Formik>
+      {isLoading ? (
+        <Loading_page />
+      ) : (
+        <>
+          <div className="A-cartButton">
+            <Link to="/cart">
+              <button className="CT-buttons">CART</button>
+            </Link>
           </div>
-        </section>
-      </div></>
-      }
+          <div className="CT-overall">
+            <h4>PLACE ORDER</h4>
+          </div>
+          <div className="Register-image">
+            <section className="R-loginContainer">
+              <div>
+                <Formik
+                  initialValues={{
+                    holdername: "",
+                    mobile: "",
+                    email: "",
+                  }}
+                  validationSchema={validate}
+                  onSubmit={(values) => {
+                    setName(values.holdername);
+                    setemail(values.email);
+                    setmobile(values.mobile);
+                    displayRazorpay();
+                  }}
+                >
+                  {(formik) => (
+                    <div>
+                      <div className="R-content">
+                        <div className="R-login-title">ORDER PRODUCT</div>
+                        <Form>
+                          <Textfield
+                            label="ENTER YOUR NAME"
+                            name="holdername"
+                            type="text"
+                            placeholder="ENTER YOUR ADDRESS"
+                          />
+                          <Textfield
+                            label="ENTER YOUR MOBILE NUMBER"
+                            name="mobile"
+                            type="number"
+                            placeholder="MOBILE NUMBER"
+                          />
+                          <Textfield
+                            label="ENTER EMAIL"
+                            name="email"
+                            type="email"
+                            placeholder="EMAIL ID"
+                          />
+                          <div>
+                            <h4>Your address:</h4>
+                            <h5>{Address}</h5>
+                            <div>
+                              <Link to="/editaddress">
+                                <button
+                                  className="A-botton A-buttonPosition"
+                                  type="reset"
+                                >
+                                  EDIT
+                                </button>
+                              </Link>
+                            </div>
+                          </div>
+                          <button className="R-buttons" type="submit">
+                            PAY
+                          </button>
+                          <button className="R-buttons" type="reset">
+                            RESET
+                          </button>
+                        </Form>
+                      </div>
+                    </div>
+                  )}
+                </Formik>
+              </div>
+            </section>
+          </div>
+        </>
+      )}
     </>
   );
 }
