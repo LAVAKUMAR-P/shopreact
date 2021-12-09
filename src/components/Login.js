@@ -23,6 +23,7 @@ function Login() {
   const[Loading,setLoading]=useState(false);
  
   const postData=async(values)=>{
+    setLoading(true)
     try {
       let postData = await axios.post(
         `${env.api}/login`,
@@ -45,6 +46,7 @@ function Login() {
   }
   const handleLogin= async(googleData)=>{
     console.log(googleData);
+    setLoading(true)
     try {
       let postData = await axios.post(
         `${env.api}/loginbygoogle`, {
@@ -91,6 +93,7 @@ function Login() {
               <div className="L-loginContainer">
                 <div className="L-content">
                   <div className="L-content-position">
+                  <h5>Login with Google</h5>
                   <div>
                    <GoogleLogin
                     clientId={env.REACT_APP_GOOGLE_CLIENT_ID}

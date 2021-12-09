@@ -13,6 +13,7 @@ import GoogleLogin from "react-google-login";
 
 
 function Register() {
+ 
   const validate = Yup.object({
     firstName: Yup.string()
       .max(15, "Must be 15 characters or less")
@@ -36,6 +37,7 @@ function Register() {
   const[Loading,setLoading]=useState(false);
 
   const postData=async(data)=>{
+    setLoading(true)
     try {
       let Data = await axios.post(`${env.api}/register`, data);
       window.alert("User registered");
@@ -54,6 +56,7 @@ function Register() {
   }
   const handleregister= async(googleData)=>{
   console.log(googleData);
+  setLoading(true)
   try {
     let Data = await axios.post(`${env.api}/registerbygoogle`, {
       token: googleData.tokenId,
