@@ -94,7 +94,7 @@ function Login() {
                   <div>
                    <GoogleLogin
                     clientId={env.REACT_APP_GOOGLE_CLIENT_ID}
-                    buttonText="Sign-Up with Google"
+                    buttonText="Login with Google"
                     onSuccess={handleLogin}
                     onFailure={handleFailure}
                     cookiePolicy={'single_host_origin'}
