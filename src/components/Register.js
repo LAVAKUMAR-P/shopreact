@@ -9,6 +9,7 @@ import Navbar_Login from "./Navbar_Login";
 import {useNavigate} from "react-router-dom";
 import Loading_page from "./Loading_page";
 import Textarea from "./Textarea";
+import GoogleLogin from "react-google-login";
 
 
 function Register() {
@@ -51,7 +52,29 @@ function Register() {
       }
     }
   }
-  
+  const handleLogin= async(googleData)=>{
+  console.log(googleData);
+  try {
+    let Data = await axios.post(`${env.api}/registerbygoogle`, {
+      token: googleData.tokenId,
+    });
+    window.alert("User registered");
+    setLoading(false);
+    Navigate("/login")
+  } catch (error) {
+    setLoading(false)
+    if (error.message === "Request failed with status code 409") {
+      window.alert("Mailid is already registered");
+      console.log(error);
+    } else {
+      window.alert("check your network");
+      console.log(error);
+    }
+  }
+  }
+  const handleFailure=(err)=>{
+console.log(err);
+  }
   return (
     <>
     <Navbar_Login/>
@@ -85,6 +108,17 @@ function Register() {
              {(formik) => (
                <div>
                  <div className="R-content">
+                 <h5>Sign-Up with Google</h5>
+                 <div>
+                   <GoogleLogin
+                    clientId={env.REACT_APP_GOOGLE_CLIENT_ID}
+                    buttonText="Sign-Up with Google"
+                    onSuccess={handleLogin}
+                    onFailure={handleFailure}
+                    cookiePolicy={'single_host_origin'}
+                   />
+                   </div>
+                   <h4>OR</h4>
                    <div className="R-login-title">Register</div>
                    <Form>
                      <Textfield
@@ -131,6 +165,7 @@ function Register() {
                        Reset
                      </button>
                    </Form>
+                   
                  </div>
                </div>
              )}
