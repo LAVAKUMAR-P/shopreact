@@ -8,6 +8,7 @@ import Textfield from "./Textfield";
 import env from "./settings";
 import Navbar_Login from "./Navbar_Login";
 import Loading_page from "./Loading_page";
+import GoogleLogin from "react-google-login";
 
 
 function Login() {
@@ -42,7 +43,32 @@ function Login() {
       }
     }
   }
-   
+  const handleLogin= async(googleData)=>{
+    console.log(googleData);
+    try {
+      let postData = await axios.post(
+        `${env.api}/loginbygoogle`, {
+          token: googleData.tokenId,
+        }
+      );
+      window.localStorage.setItem("app_token", postData.data.token);
+      window.localStorage.setItem("action", postData.data.unconditional);
+      setLoading(false)
+      window.alert("Login sucessfull");
+      Navigate("/")
+    } catch (error) {
+      setLoading(false)
+      console.log("error");
+      if (error.message === "Request failed with status code 401") {
+        window.alert("user name or password miss match");
+      } else {
+        window.alert("Check your network");
+      }
+    }
+    }
+    const handleFailure=(err)=>{
+  console.log(err);
+    }
 
   return (
     <>
@@ -65,6 +91,16 @@ function Login() {
               <div className="L-loginContainer">
                 <div className="L-content">
                   <div className="L-content-position">
+                  <div>
+                   <GoogleLogin
+                    clientId={env.REACT_APP_GOOGLE_CLIENT_ID}
+                    buttonText="Sign-Up with Google"
+                    onSuccess={handleLogin}
+                    onFailure={handleFailure}
+                    cookiePolicy={'single_host_origin'}
+                   />
+                   </div>
+                   <h4>OR</h4>
                   <div className="L-login-title">Login</div>
                   <Form>
                     <Textfield label="Email" name="email" type="email"   placeholder="Enter your Mail id" />

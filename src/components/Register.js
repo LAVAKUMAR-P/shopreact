@@ -52,7 +52,7 @@ function Register() {
       }
     }
   }
-  const handleLogin= async(googleData)=>{
+  const handleregister= async(googleData)=>{
   console.log(googleData);
   try {
     let Data = await axios.post(`${env.api}/registerbygoogle`, {
@@ -113,7 +113,7 @@ console.log(err);
                    <GoogleLogin
                     clientId={env.REACT_APP_GOOGLE_CLIENT_ID}
                     buttonText="Sign-Up with Google"
-                    onSuccess={handleLogin}
+                    onSuccess={handleregister}
                     onFailure={handleFailure}
                     cookiePolicy={'single_host_origin'}
                    />
