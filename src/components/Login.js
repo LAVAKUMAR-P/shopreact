@@ -45,7 +45,7 @@ function Login() {
     }
   }
   const handleLogin= async(googleData)=>{
-    console.log(googleData);
+    
     setLoading(true)
     try {
       let postData = await axios.post(
@@ -70,6 +70,7 @@ function Login() {
     }
     const handleFailure=(err)=>{
   console.log(err);
+  window.alert(err.error)
     }
 
   return (

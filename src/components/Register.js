@@ -55,7 +55,6 @@ function Register() {
     }
   }
   const handleregister= async(googleData)=>{
-  console.log(googleData);
   setLoading(true)
   try {
     let Data = await axios.post(`${env.api}/registerbygoogle`, {
@@ -76,7 +75,8 @@ function Register() {
   }
   }
   const handleFailure=(err)=>{
-console.log(err);
+ console.log(err);
+ window.alert(err.error);
   }
   return (
     <>
