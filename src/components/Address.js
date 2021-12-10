@@ -89,7 +89,7 @@ function Address() {
 
     if (data.data.amount > 0) {
       const options = {
-        key: env.secret,
+        key: process.env.REACT_APP_secret,
         currency: data.data.currency,
         amount: data.data.amount.toString(),
         order_id: data.data.id,

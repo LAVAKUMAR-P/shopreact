@@ -114,7 +114,7 @@ function Register() {
                  <h5>Sign-Up with Google</h5>
                  <div>
                    <GoogleLogin
-                    clientId={env.REACT_APP_GOOGLE_CLIENT_ID}
+                    clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
                     buttonText="Sign-Up with Google"
                     onSuccess={handleregister}
                     onFailure={handleFailure}
