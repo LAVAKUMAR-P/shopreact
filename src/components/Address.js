@@ -65,16 +65,25 @@ function Address() {
       alert("Razorpay SDK failed to load. Are you online?");
       return;
     }
-
-    const data = await axios.post(
-      `${env.api}/razorpay`,
-      { values },
-      {
-        headers: {
-          Authorization: window.localStorage.getItem("app_token"),
-        },
+    let data={}
+    try {
+       data= await axios.post(
+        `${env.api}/razorpay`,
+        { values },
+        {
+          headers: {
+            Authorization: window.localStorage.getItem("app_token"),
+          },
+        }
+      );
+    } catch (error) {
+      if(error.message == "Request failed with status code 422"){
+       return window.alert("sorry currently product not available/remove and add Again") 
+      }else{
+        return window.alert("something went wrong") 
       }
-    );
+     
+    }
 
     localStorage.setItem("orid", data.data.id);
 

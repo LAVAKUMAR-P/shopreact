@@ -55,20 +55,24 @@ function Product() {
   const product = useSelector((state) => {return state.product;});
  
 
-const Addtocart=async(product)=>{
-  console.log(product);
+const Addtocart=async(id)=>{
   let ok = window.localStorage.getItem("app_token");
   try {
     if(ok){
-      let getdata = await axios.post(`${env.api}/addtocart`,{values : product},{
-        headers: {
-          Authorization: window.localStorage.getItem("app_token"),
-        },
-      })
-     
-      setLoading(true);
-      window.alert("Added sucessfully");
-      Navigate("/cart");
+      if(product.values.quantity >=1){
+        let getdata = await axios.post(`${env.api}/addtocart`,{values : id},{
+          headers: {
+            Authorization: window.localStorage.getItem("app_token"),
+          },
+        })
+       
+        setLoading(true);
+        window.alert("Added sucessfully");
+        Navigate("/cart");
+      }
+      else{
+        window.alert("Product currently not available")
+      }
     }
     else{
       window.alert("kindly Login")
@@ -79,11 +83,11 @@ const Addtocart=async(product)=>{
   }
 }
 
-const Removecart=async(product)=>{
+const Removecart=async(id)=>{
   try {
     let ok=window.confirm("Are you want to delete product?")
     if(ok){
-      let deleteproduct = await axios.delete(`${env.api}/cartproductdelete/${product}`,{
+      let deleteproduct = await axios.delete(`${env.api}/cartproductdelete/${id}`,{
         headers: {
           Authorization: window.localStorage.getItem("app_token"),
         },

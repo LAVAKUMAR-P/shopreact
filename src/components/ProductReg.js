@@ -16,6 +16,7 @@ function ProductReg() {
     category: Yup.string()
       .max(30, "Must be 30 characters or less")
       .required("Required"),
+    quantity: Yup.number().required("price required"),
     price: Yup.number().required("price required"),
     image: Yup.string().required("Image required"),
     rating: Yup.number().required("price required").min(0, 'Min value 0.')
@@ -44,6 +45,7 @@ function ProductReg() {
                 category: "",
                 price: "",
                 image: "",
+                quantity:"",
                 count:"",
                 rating:"",
                 description: "",
@@ -102,6 +104,12 @@ function ProductReg() {
                         name="count"
                         type="number"
                         placeholder="Enter Number of product"
+                      />
+                       <Textfield
+                        label="STOCK"
+                        name="quantity"
+                        type="number"
+                        placeholder="Enter STOCK"
                       />
                       <Textfield
                         label="Rating"
