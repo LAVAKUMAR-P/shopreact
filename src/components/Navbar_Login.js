@@ -3,6 +3,7 @@ import * as AiIcons from "react-icons/ai";
 import { Link } from 'react-router-dom';
 import { NavbarData_login } from './Navbardata_data';
 import "./Navbarlog.css"
+import Logo from "./images/LOGO.png" 
 
 
 
@@ -31,10 +32,10 @@ export default function Navbar_Login() {
   }, [])
 
   return (
-    <nav className="navbar">
-      
+    <nav className="navbar"> 
       {(toggleMenu || screenWidth > 541) && (
       <ul className="listlogin">
+
         {
           NavbarData_login.map((data,index)=>{
             return(

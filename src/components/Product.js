@@ -58,6 +58,7 @@ function Product() {
 const Addtocart=async(id)=>{
   let ok = window.localStorage.getItem("app_token");
   try {
+    setLoading(true);
     if(ok){
       if(product.values.quantity >=1){
         let getdata = await axios.post(`${env.api}/addtocart`,{values : id},{
@@ -66,24 +67,28 @@ const Addtocart=async(id)=>{
           },
         })
        
-        setLoading(true);
+        setLoading(false)
         window.alert("Added sucessfully");
         Navigate("/cart");
       }
       else{
         window.alert("Product currently not available")
       }
+     
     }
     else{
       window.alert("kindly Login")
     }
+    setLoading(false)
   } catch (error) {
+    setLoading(false)
     console.log(error);
     window.alert("Something went wrong");
   }
 }
 
 const Removecart=async(id)=>{
+  setLoading(true);
   try {
     let ok=window.confirm("Are you want to delete product?")
     if(ok){
@@ -92,7 +97,7 @@ const Removecart=async(id)=>{
           Authorization: window.localStorage.getItem("app_token"),
         },
       })
-      setLoading(true);
+     setLoading(false)
       window.alert("Deleted sucessfully");
       fetchcartdata();
       fetchdata(id);
@@ -100,7 +105,9 @@ const Removecart=async(id)=>{
     else{
       window.alert("Canceled")
     }
+    setLoading(false)
   } catch (error) {
+    setLoading(false)
     console.log(error);
     window.alert("Something went wrong");
   }
@@ -144,7 +151,7 @@ const Removecartid=()=>{
                 </div>
                 <br/>
                 <div>product price:</div>
-                <div>{product.values.price}</div>
+                <div>₹ {product.values.price}</div>
                 <div>product category:</div>
                 <div>{product.values.category}</div>
                 {

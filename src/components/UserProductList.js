@@ -108,9 +108,11 @@ function UserProductList() {
                   <div>Product Name:</div>
                   <div>{data.values.title}</div>
                   <div>product price:</div>
-                  <div>{data.values.price}</div>
+                  <div>₹ {data.values.price}</div>
                   <div>product category:</div>
                   <div>{data.values.category}</div>
+                  <div>STOCK:</div>
+                  <div>{data.values.quantity}</div>
                   <div>
                     <Link to={`/productedit/${data._id}`}>
                       <button className="US-buttons">EDIT</button>

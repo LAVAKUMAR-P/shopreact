@@ -72,7 +72,7 @@ function Order() {
                     <div>Product Name:</div>
                     <div>{Data.values.title}</div>
                     <div>product price:</div>
-                    <div>{Data.values.price}</div>
+                    <div>₹ {Data.values.price}</div>
                     <div>product category:</div>
                     <div>{Data.values.category}</div>
                     <div>product status:</div>

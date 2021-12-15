@@ -125,7 +125,7 @@ function Cart() {
                 <>
                   {" "}
                   <div>
-                    Totel amount:<span>{totel}</span>
+                    Totel amount:<span>₹ {totel}</span>
                     <div>
                 <Link to="/address"><button className="CT-buttons">ORDER PRODUCT</button></Link>
                  </div>
@@ -161,7 +161,7 @@ function Cart() {
                     <div>Product Name:</div>
                     <div>{Data.values.title}</div>
                     <div>product price:</div>
-                    <div>{Data.values.price}</div>
+                    <div>₹ {Data.values.price}</div>
                     <div>product category:</div>
                     <div>{Data.values.category}</div>
                     <div>

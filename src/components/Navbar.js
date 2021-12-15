@@ -8,7 +8,7 @@ import axios from "axios";
 import env from "./settings";
 import { removeProduct, setProducts } from "../redux/action/productAction";
 import { useDispatch} from 'react-redux';
-
+import Logo from "./images/LOGO.png" 
 
 export default function Navbar(props) {
 
@@ -79,7 +79,7 @@ export default function Navbar(props) {
 
   return (
     <nav className="navhome">
-     <Link to="/"> <div className="App-name" onClick={()=>{allproduct()}}>Shopping app</div></Link>
+     <Link to="/" onClick={()=>{allproduct()}}><div className="App-name"><img src={Logo} alt="image"/></div></Link>
       <form className="search" onSubmit={props.search}>
         <div>
           <input

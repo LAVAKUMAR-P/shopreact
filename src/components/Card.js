@@ -14,7 +14,7 @@ function Card({ Data}) {
           <div>Category: </div>
           <div>{Data.values.category}</div>
           <div>price:</div>
-          <div>{Data.values.price}</div>
+          <div>₹ {Data.values.price}</div>
         </div>
       </div>
     </Link>

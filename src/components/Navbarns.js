@@ -4,6 +4,7 @@ import * as AiIcons from "react-icons/ai";
 import {NavbarData} from './Navbardata';
 import { BiSearchAlt2 } from "react-icons/bi";
 import { Link ,useNavigate} from 'react-router-dom';
+import Logo from "./images/LOGO.png" 
 export default function Navbarns() {
   const [toggleMenu, setToggleMenu] = useState(false)
   const [screenWidth, setScreenWidth] = useState(window.innerWidth)
@@ -47,7 +48,7 @@ export default function Navbarns() {
 
   return (
     <nav className="navhome1">
-      <div className="App-name">Shopping app</div>
+          <Link to="/"><div className="App-name"><img src={Logo} alt="image"/></div></Link>
       {(toggleMenu || screenWidth >1280) && (
       <ul className="list1">
         {

@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Navbarns from "./Navbarns";
 import env from "./settings";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Textfield from "./Textfield";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
@@ -12,6 +12,7 @@ function UserProductedit() {
   const { id } = useParams();
   const [Data, setData] = useState();
   const [Loading, setLoading] = useState(true);
+  const Navigate=useNavigate()
   const validate = Yup.object({
     title: Yup.string()
       .max(30, "Must be 30 characters or less")
@@ -75,6 +76,7 @@ function UserProductedit() {
                 }}
                 validationSchema={validate}
                 onSubmit={async (values) => {
+                  setLoading(true)
                   values.image = `https://drive.google.com/uc?export=view&id=${values.image}`;
                   try {
                     let postData = await axios.put(
@@ -87,9 +89,11 @@ function UserProductedit() {
                         },
                       }
                     );
+                    setLoading(false)
                     window.alert("Product edited");
-                    fetchdata();
+                   Navigate("/productlist")
                   } catch (error) {
+                    setLoading(false)
                     if (
                       error.message === "Request failed with status code 409"
                     ) {
@@ -99,15 +103,17 @@ function UserProductedit() {
                       window.alert("check your network");
                       console.log(error);
                     }
+                    fetchdata()
                   }
                 }}
                 enableReinitialize
               >
                 {(formik) => (
                   <div>
-                    <div className="R-content">
+                    <div className="PR-content">
                       <div className="R-login-title">EDIT PRODUCT</div>
                       <Form>
+                        <div className="R-gird">
                         <Textfield
                           label="Product Name"
                           name="title"
@@ -162,6 +168,7 @@ function UserProductedit() {
                         <button className="R-buttons" type="reset">
                           RESET
                         </button>
+                        </div>
                       </Form>
                     </div>
                   </div>

@@ -8,10 +8,10 @@
 }  
 
 /*content inside container*/
-.R-content{
+.PR-content{
     display: grid;
     place-items: center;
-    width: 350px;
+    min-width: 350px;
     background-color: #F5FFFA;
     padding: 0.5em;
     border-radius: 0.5em ;
@@ -74,4 +74,17 @@
     background-color: rgba(20, 20, 143, 0.774);
     cursor: pointer; 
     box-shadow: 0 0 10px rgba(20, 20, 143, 0.774);
+}
+
+.R-gird{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+@media screen and (max-device-width:990px) { 
+    
+.R-gird{
+    display: grid;
+    grid-template-columns: 1fr;
+}  
 }
